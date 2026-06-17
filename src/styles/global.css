@@ -1,0 +1,378 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white font-sans text-brand-navy antialiased;
+  }
+}
+
+@layer components {
+  .section-container {
+    @apply mx-auto max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-title {
+    @apply font-display text-3xl font-bold tracking-tight text-brand-navy sm:text-4xl;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-full bg-spot-coral px-6 py-3 text-sm font-bold text-white shadow-spot transition hover:bg-spot-amber hover:shadow-lg;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center rounded-full border-2 border-brand-navy/15 bg-white/80 px-6 py-3 text-sm font-semibold text-brand-navy backdrop-blur-sm transition hover:border-spot-coral hover:text-spot-coral;
+  }
+
+  /* ── Фоновые пятна — клочки оторванной цветной бумаги (SVG) ── */
+  .cow-spots {
+    @apply pointer-events-none absolute inset-0 overflow-hidden;
+  }
+
+  .cow-spot-corner {
+    @apply absolute max-w-none select-none;
+    width: min(26vw, 300px);
+    height: min(24vw, 280px);
+    filter: drop-shadow(1px 3px 4px rgba(26, 43, 74, 0.16));
+  }
+
+  .cow-spot-corner--tl {
+    left: -3%;
+    top: -4%;
+  }
+
+  .cow-spot-corner--bl {
+    left: -4%;
+    bottom: -6%;
+    width: min(30vw, 340px);
+    height: min(18vw, 200px);
+  }
+
+  .cow-spot-corner--tr {
+    right: -3%;
+    top: -4%;
+  }
+
+  .cow-spot-corner--br {
+    right: -4%;
+    bottom: -6%;
+  }
+
+  .torn-paper {
+    stroke: rgba(255, 255, 255, 0.28);
+    stroke-width: 1.2;
+    paint-order: stroke fill;
+  }
+
+  .cow-spots--page .cow-spot-corner,
+  .cow-spots--hero .cow-spot-corner {
+    opacity: 0.94;
+  }
+
+  .cow-spots--page .cow-spot-corner--tl {
+    left: -5%;
+    top: -8%;
+    transform: scale(0.88);
+    transform-origin: top left;
+  }
+
+  .cow-spots--page .cow-spot-corner--tr {
+    right: -5%;
+    top: -8%;
+    transform: scale(0.88);
+    transform-origin: top right;
+  }
+
+  .cow-spots--footer .cow-spot-corner--bl {
+    opacity: 0.94;
+    transform: scale(1.05) translate(-4%, 6%);
+    transform-origin: bottom left;
+  }
+
+  .cow-spots--minimal .cow-spot-corner {
+    opacity: 0.28;
+    transform: scale(0.72);
+  }
+
+  /* ── Декоративные точки ── */
+  .spot-dots {
+    @apply flex items-center gap-2;
+  }
+
+  .spot-dots__item {
+    @apply block rounded-full;
+  }
+
+  .spot-dots__item--white {
+    @apply h-3.5 w-3.5 bg-white shadow-sm;
+  }
+
+  .spot-dots__item--coral {
+    @apply h-2.5 w-2.5 bg-spot-coral;
+  }
+
+  .spot-dots__item--sky {
+    @apply h-3 w-3 bg-spot-sky;
+  }
+
+  .spot-dots__item--amber {
+    @apply h-2 w-2 bg-spot-amber;
+  }
+
+  /* ── Hero ── */
+  .hero-eyebrow {
+    @apply mb-4 inline-block bg-white/90 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-spot-coral shadow-sm;
+    border-radius: 42% 58% 55% 45% / 48% 42% 58% 52%;
+  }
+
+  .hero-title {
+    @apply font-display text-4xl font-extrabold leading-tight text-brand-navy sm:text-5xl lg:text-6xl;
+  }
+
+  .hero-logo-card {
+    @apply border border-white/60 bg-white/90 p-8 shadow-card backdrop-blur-md;
+    border-radius: 48% 52% 45% 55% / 52% 48% 55% 45%;
+  }
+
+  /* ── Баннер страниц — угловые клочки, текст на чистом фоне ── */
+  .page-banner__content {
+    @apply relative z-10 max-w-3xl py-4;
+  }
+
+  .page-banner__title {
+    @apply font-display text-3xl font-extrabold leading-tight text-brand-navy sm:text-4xl;
+  }
+
+  .page-banner__subtitle {
+    @apply mt-4 max-w-xl text-base leading-relaxed text-brand-navy/85;
+  }
+
+  /* ── Карточки с угловым пятном (этикетка) ── */
+  .spot-card {
+    @apply relative overflow-hidden bg-white p-6 shadow-card;
+    border-radius: 1.25rem;
+  }
+
+  .spot-card__blob {
+    @apply pointer-events-none absolute -right-10 -top-10 h-36 w-36 max-w-none select-none opacity-95;
+    filter: drop-shadow(1px 2px 3px rgba(26, 43, 74, 0.12));
+  }
+
+  /* ── Номер шага технологии ── */
+  .tech-step-spot {
+    @apply relative h-14 w-14 shrink-0;
+  }
+
+  .tech-step-spot__svg {
+    @apply absolute inset-0 h-full w-full;
+    filter: drop-shadow(1px 2px 3px rgba(26, 43, 74, 0.12));
+  }
+
+  .tech-step-spot__num {
+    @apply absolute inset-0 flex items-center justify-center font-display text-lg font-extrabold text-brand-navy;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
+  }
+
+  /* ── Бейдж этапа ── */
+  .spot-badge-amber {
+    @apply inline-block bg-spot-amber px-2.5 py-0.5 text-xs font-bold text-brand-navy;
+    border-radius: 38% 62% 58% 42% / 52% 48% 52% 48%;
+  }
+
+  /* ── Слот для фото ── */
+  .photo-slot {
+    @apply relative overflow-hidden rounded-2xl border-2 border-dashed border-brand-navy/15 bg-brand-cream/50;
+  }
+
+  .photo-slot--video {
+    aspect-ratio: 4 / 3;
+  }
+
+  .photo-slot--wide {
+    aspect-ratio: 16 / 10;
+  }
+
+  .photo-slot--square {
+    aspect-ratio: 1 / 1;
+  }
+
+  .photo-slot__img {
+    @apply h-full w-full object-cover;
+  }
+
+  .photo-slot__placeholder {
+    @apply flex h-full w-full flex-col items-center justify-center gap-3 p-6 text-brand-navy/35;
+  }
+
+  .photo-slot__icon {
+    @apply h-10 w-10;
+  }
+
+  .photo-slot__label {
+    @apply text-center text-xs font-semibold uppercase tracking-wide;
+  }
+
+  /* ── Отзывы ── */
+  .review-card {
+    @apply flex h-full flex-col rounded-2xl border border-brand-navy/10 bg-white p-6 shadow-card;
+  }
+
+  .review-card__quote {
+    @apply flex-1 text-sm leading-relaxed text-brand-navy/80;
+  }
+
+  .review-card__footer {
+    @apply mt-6 border-t border-brand-navy/10 pt-4 not-italic;
+  }
+
+  .review-card__author {
+    @apply block font-display text-sm font-bold text-brand-navy not-italic;
+  }
+
+  .review-card__role {
+    @apply mt-1 block text-xs font-medium text-brand-navy/55;
+  }
+
+  /* ── Преимущества технологии (страница технологии) ── */
+  .tech-advantages {
+    @apply border-t border-brand-navy/5 bg-brand-cream/35 py-20;
+  }
+
+  .tech-advantages__visual {
+    @apply overflow-hidden rounded-2xl border border-brand-navy/10 bg-white shadow-card;
+  }
+
+  .tech-advantages__img {
+    @apply h-auto w-full;
+  }
+
+  .tech-advantages__card {
+    @apply relative;
+  }
+
+  .tech-advantages__num {
+    @apply inline-flex h-7 w-7 items-center justify-center rounded-full bg-brand-navy/10 font-display text-xs font-bold text-brand-navy;
+  }
+
+  .tech-advantages__bridge {
+    @apply rounded-2xl border border-brand-navy/10 bg-white/80 px-6 py-5 shadow-sm;
+  }
+
+  /* ── Страница технологии — подробные этапы ── */
+  .tech-detail {
+    @apply border-t border-brand-navy/5 bg-white py-20;
+  }
+
+  .tech-detail__step {
+    @apply grid items-start gap-10 lg:grid-cols-2 lg:gap-14;
+  }
+
+  .tech-detail__step--reverse .tech-detail__visual {
+    @apply lg:order-2;
+  }
+
+  .tech-detail__step--reverse .tech-detail__body {
+    @apply lg:order-1;
+  }
+
+  .tech-detail__figure {
+    @apply overflow-hidden rounded-2xl border border-brand-navy/10 bg-brand-cream/40 shadow-card;
+  }
+
+  .tech-detail__img {
+    @apply h-auto w-full;
+  }
+
+  .tech-detail__caption {
+    @apply mt-3 text-center text-xs text-brand-navy/50;
+  }
+
+  .tech-detail__header {
+    @apply mb-8 flex items-start gap-4;
+  }
+
+  .tech-detail__product {
+    @apply inline-block text-xs font-bold uppercase tracking-widest text-spot-coral;
+  }
+
+  .tech-detail__title {
+    @apply mt-1 font-display text-2xl font-extrabold leading-tight text-brand-navy sm:text-3xl;
+  }
+
+  .tech-detail__num {
+    @apply mb-1 block text-xs font-bold uppercase tracking-wide text-brand-navy/45;
+  }
+
+  .tech-detail__block {
+    @apply mb-6;
+  }
+
+  .tech-detail__label {
+    @apply mb-3 font-display text-sm font-bold uppercase tracking-wide text-brand-navy;
+  }
+
+  .tech-detail__text {
+    @apply text-sm leading-relaxed text-brand-navy/80 sm:text-base;
+  }
+
+  .tech-detail__list {
+    @apply space-y-3 pl-5 text-sm leading-relaxed text-brand-navy/80 sm:text-base;
+    list-style-type: decimal;
+  }
+
+  .tech-detail__medium {
+    @apply rounded-2xl border-l-4 bg-brand-cream/50 p-5;
+    border-left-color: var(--step-color, #2ab0b3);
+  }
+
+  .tech-detail__medium-tag {
+    @apply mb-2 block font-display text-sm font-bold text-brand-navy;
+  }
+
+  .tech-detail__medium p {
+    @apply text-sm leading-relaxed text-brand-navy/75;
+  }
+
+  /* ── Страница производства ── */
+  .production-iso {
+    @apply flex flex-col gap-6 rounded-2xl border border-brand-navy/10 bg-white p-5 shadow-sm sm:flex-row sm:items-center;
+  }
+
+  .production-iso__badge {
+    @apply w-full shrink-0 sm:w-28;
+  }
+
+  .production-iso__text {
+    @apply flex-1;
+  }
+
+  /* ── Карта на странице контактов ── */
+  .contact-map-wrap {
+    @apply overflow-hidden rounded-2xl border border-brand-navy/10 shadow-card;
+    filter: grayscale(100%);
+  }
+
+  .contact-map {
+    @apply relative;
+  }
+
+  .contact-map__frame {
+    @apply block h-[22rem] w-full border-0 sm:h-[26rem];
+  }
+
+  /* ── CTA с янтарным пятном ── */
+  .cta-spot {
+    @apply relative overflow-hidden py-16 text-white;
+  }
+
+  .cta-spot__content {
+    @apply relative z-10;
+  }
+}

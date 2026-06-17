@@ -1,0 +1,54 @@
+---
+import type { Locale } from '../i18n';
+import type { SiteContent } from '../content/site';
+import { localizedPath } from '../i18n';
+import CowSpots from './CowSpots.astro';
+import PhotoSlot from './PhotoSlot.astro';
+import SpotCardBlob from './SpotCardBlob.astro';
+import { brandSpotColors } from '../data/brand-colors';
+
+interface Props {
+  locale: Locale;
+  content: SiteContent;
+}
+
+const { locale, content } = Astro.props;
+const highlightColors = [brandSpotColors.teal, brandSpotColors.wash, brandSpotColors.green];
+---
+
+<section class="relative overflow-hidden border-t border-brand-navy/5 bg-white py-20">
+  <CowSpots variant="minimal" palette="contact" />
+  <div class="section-container relative z-10">
+    <div class="grid items-center gap-12 lg:grid-cols-2">
+      <PhotoSlot
+        alt={content.homeProduction.imageAlt}
+        src={content.homeProduction.image}
+        aspect="wide"
+        class="w-full"
+      />
+
+      <div>
+        <h2 class="section-title">{content.homeProduction.title}</h2>
+        <p class="mt-4 text-base leading-relaxed text-brand-navy/75">{content.homeProduction.text}</p>
+
+        <ul class="mt-8 space-y-4">
+          {
+            content.homeProduction.highlights.map((item, i) => (
+              <li class="spot-card flex gap-4 p-4">
+                <SpotCardBlob color={highlightColors[i]} />
+                <div class="relative z-10">
+                  <h3 class="font-display text-sm font-bold text-brand-navy">{item.title}</h3>
+                  <p class="mt-1 text-sm text-brand-navy/70">{item.text}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+
+        <a href={localizedPath('/about', locale)} class="btn-outline mt-8">
+          {content.homeProduction.cta}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 360" fill="none" aria-hidden="true">
+  <rect width="560" height="360" rx="20" fill="#faf8f5"/>
+  <!-- >H04L (AE5<0) -->
+  <path d="M72 248c18-52 46-78 88-86 28-6 52 2 72 22 14 14 24 34 28 58 2 14 2 28 0 40H72z" fill="#e8eef5" stroke="#1a2b4a" stroke-width="2"/>
+  <path d="M88 210c12-28 34-44 62-48" stroke="#1a2b4a" stroke-width="2" stroke-linecap="round"/>
+  <ellipse cx="168" cy="188" rx="34" ry="26" fill="#fff" stroke="#1a2b4a" stroke-width="2"/>
+  <!-- /8G=8: 8 D>;;8:C;K -->
+  <ellipse cx="168" cy="188" rx="22" ry="16" fill="#f5d0dc" stroke="#c23b7a" stroke-width="1.5"/>
+  <circle cx="160" cy="182" r="5" fill="#fff" stroke="#c23b7a" stroke-width="1.2"/>
+  <circle cx="174" cy="190" r="4" fill="#fff" stroke="#c23b7a" stroke-width="1.2"/>
+  <circle cx="168" cy="196" r="3.5" fill="#e63380" stroke="#c23b7a" stroke-width="1"/>
+  <!-- 0B5B5@ 0A?8@0F88 -->
+  <path d="M198 176c36-18 72-30 108-34" stroke="#1a2b4a" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M306 142l18-10 8 14-18 10z" fill="#7ec8e3" stroke="#1a2b4a" stroke-width="1.5"/>
+  <!-- !1>@ D>;;8:C;O@=>9 684:>AB8 -->
+  <rect x="330" y="118" width="88" height="58" rx="10" fill="#fff" stroke="#2ab0b3" stroke-width="2"/>
+  <circle cx="358" cy="148" r="8" fill="#e8d44a" stroke="#e8482a" stroke-width="1"/>
+  <circle cx="378" cy="152" r="6" fill="#e8d44a" stroke="#e8482a" stroke-width="1"/>
+  <circle cx="396" cy="146" r="7" fill="#e8d44a" stroke="#e8482a" stroke-width="1"/>
+  <text x="374" y="138" text-anchor="middle" fill="#1a2b4a" font-family="Inter, sans-serif" font-size="9" font-weight="600">>>F8BK</text>
+  <!-- 5H>: TSM-Asp -->
+  <path d="M388 208c0-18 14-32 32-32h52c18 0 32 14 32 32v44H388z" fill="#2ab0b3" opacity="0.2" stroke="#2ab0b3" stroke-width="2"/>
+  <rect x="420" y="176" width="52" height="18" rx="4" fill="#2ab0b3"/>
+  <text x="446" y="230" text-anchor="middle" fill="#1a2b4a" font-family="Montserrat, sans-serif" font-size="11" font-weight="700">TSM-Asp</text>
+  <!-- !B@5;:8 ?@>F5AA0 -->
+  <path d="M314 148h16" stroke="#e8482a" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M418 176v24" stroke="#2ab0b3" stroke-width="2" stroke-dasharray="4 3"/>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0 0l6 3-6 3z" fill="#e8482a"/>
+    </marker>
+  </defs>
+  <text x="280" y="310" text-anchor="middle" fill="#1a2b4a" font-family="Inter, sans-serif" font-size="12" opacity="0.7">A?8@0F8O >>F8B>2 ’ 2K<K20=85 2 A@545 TSM-Asp</text>
+</svg>

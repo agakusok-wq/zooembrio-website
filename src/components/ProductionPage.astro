@@ -1,0 +1,111 @@
+---
+import type { SiteContent } from '../content/site';
+import PhotoSlot from './PhotoSlot.astro';
+import SpotCardBlob from './SpotCardBlob.astro';
+import SpotDots from './SpotDots.astro';
+import { brandSpotColors } from '../data/brand-colors';
+
+interface Props {
+  content: SiteContent;
+}
+
+const { content } = Astro.props;
+const p = content.production;
+
+const formulationColors = [
+  brandSpotColors.teal,
+  brandSpotColors.wash,
+  brandSpotColors.green,
+  brandSpotColors.wam,
+];
+const qualityColors = [
+  brandSpotColors.teal,
+  brandSpotColors.wash,
+  brandSpotColors.green,
+  brandSpotColors.wam,
+  brandSpotColors.coral,
+];
+const itemColors = [brandSpotColors.teal, brandSpotColors.wam];
+---
+
+<section class="production-sterile py-20">
+  <div class="section-container grid items-center gap-12 lg:grid-cols-2">
+    <PhotoSlot
+      alt={p.sterile.imageAlt}
+      src={p.sterile.image}
+      aspect="wide"
+      class="w-full"
+    />
+
+    <div>
+      <h2 class="section-title">{p.sterile.title}</h2>
+      <p class="mt-4 text-base leading-relaxed text-brand-navy/80">{p.sterile.text}</p>
+
+      <div class="production-iso mt-10">
+        <PhotoSlot
+          alt={p.sterile.isoBadgeAlt}
+          src={p.sterile.isoBadgeImage}
+          aspect="square"
+          class="production-iso__badge"
+        />
+        <div class="production-iso__text">
+          <h3 class="font-display text-lg font-bold text-brand-navy">{p.sterile.isoLabel}</h3>
+          <p class="mt-2 text-sm leading-relaxed text-brand-navy/75">{p.sterile.isoText}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="production-formulation border-t border-brand-navy/5 bg-brand-cream/40 py-20">
+  <div class="section-container">
+    <SpotDots class="mb-4" />
+    <h2 class="section-title">{p.formulation.title}</h2>
+    <p class="mt-4 max-w-3xl text-base leading-relaxed text-brand-navy/80">{p.formulation.text}</p>
+
+    <div class="mt-10 grid gap-6 md:grid-cols-2">
+      {
+        p.formulation.items.map((item, i) => (
+          <div class="spot-card">
+            <SpotCardBlob color={formulationColors[i]} />
+            <h3 class="relative z-10 font-display text-lg font-bold text-brand-navy">{item.title}</h3>
+            <p class="relative z-10 mt-3 text-sm leading-relaxed text-brand-navy/75">{item.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<section class="production-quality border-t border-brand-navy/5 py-20">
+  <div class="section-container">
+    <h2 class="section-title">{p.quality.title}</h2>
+    <p class="mt-3 max-w-2xl text-base text-brand-navy/70">{p.quality.subtitle}</p>
+
+    <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {
+        p.quality.items.map((item, i) => (
+          <div class="spot-card">
+            <SpotCardBlob color={qualityColors[i]} />
+            <h3 class="relative z-10 font-display text-base font-bold text-brand-navy">{item.title}</h3>
+            <p class="relative z-10 mt-2 text-sm leading-relaxed text-brand-navy/75">{item.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<section class="production-items border-t border-brand-navy/5 bg-brand-cream/40 py-20">
+  <div class="section-container grid gap-8 md:grid-cols-2">
+    {
+      p.items.map((item, i) => (
+        <div class="spot-card">
+          <SpotCardBlob color={itemColors[i]} />
+          <h2 class="relative z-10 font-display text-xl font-bold text-brand-navy">{item.title}</h2>
+          <p class="relative z-10 mt-3 text-sm leading-relaxed text-brand-navy/75">{item.text}</p>
+        </div>
+      ))
+    }
+  </div>
+</section>

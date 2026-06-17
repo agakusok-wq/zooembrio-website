@@ -1,0 +1,52 @@
+---
+import { brandSpotColors } from '../data/brand-colors';
+import type { SiteContent } from '../content/site';
+import SpotDots from './SpotDots.astro';
+import TechStepSpot from './TechStepSpot.astro';
+import SpotCardBlob from './SpotCardBlob.astro';
+
+interface Props {
+  content: SiteContent;
+}
+
+const { content } = Astro.props;
+const stepSpotClass = ['tech-step-spot--0', 'tech-step-spot--1', 'tech-step-spot--2', 'tech-step-spot--3'];
+const stepColors = [
+  brandSpotColors.teal,
+  brandSpotColors.wash,
+  brandSpotColors.green,
+  brandSpotColors.wam,
+];
+---
+
+<section class="relative overflow-hidden py-20">
+  <div class="section-container relative z-10">
+    <div class="mx-auto mb-14 max-w-2xl text-center">
+      <SpotDots class="mx-auto mb-4 justify-center" />
+      <h2 class="section-title">{content.technology.title}</h2>
+      <p class="mt-4 text-brand-navy/70">{content.technology.subtitle}</p>
+    </div>
+
+    <div class="relative mx-auto max-w-3xl space-y-8">
+      {
+        content.technology.steps.map((step, index) => (
+          <div class="relative flex gap-6 md:gap-8">
+            <TechStepSpot index={index} colorClass={stepSpotClass[index]} />
+            <div class="spot-card flex-1">
+              <SpotCardBlob color={stepColors[index]} />
+              <div class="relative z-10 mb-1 text-xs font-bold uppercase tracking-wide text-spot-coral">
+                {step.product}
+              </div>
+              <h3 class="relative z-10 font-display text-xl font-bold text-brand-navy">{step.title}</h3>
+              <p class="relative z-10 mt-2 text-sm leading-relaxed text-brand-navy/75">{step.text}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <p class="relative z-10 mx-auto mt-10 max-w-2xl text-center text-sm text-brand-navy/60">
+      {content.technology.note}
+    </p>
+  </div>
+</section>

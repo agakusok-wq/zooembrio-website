@@ -1,0 +1,65 @@
+---
+import type { SiteContent } from '../content/site';
+import SpotDots from './SpotDots.astro';
+import SpotCardBlob from './SpotCardBlob.astro';
+import { brandSpotColors } from '../data/brand-colors';
+
+interface Props {
+  content: SiteContent;
+}
+
+const { content } = Astro.props;
+const { advantages } = content.technology;
+const cardColors = [
+  brandSpotColors.teal,
+  brandSpotColors.sky,
+  brandSpotColors.wash,
+  brandSpotColors.amber,
+  brandSpotColors.green,
+  brandSpotColors.wam,
+];
+---
+
+<section class="tech-advantages">
+  <div class="section-container">
+    <SpotDots class="mb-4 justify-center" />
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="section-title">{advantages.title}</h2>
+      <p class="mt-3 text-sm font-semibold uppercase tracking-wide text-spot-coral">
+        {advantages.subtitle}
+      </p>
+      <p class="mt-6 text-base leading-relaxed text-brand-navy/80">{advantages.intro}</p>
+    </div>
+
+    <div class="tech-advantages__visual mx-auto mt-10 max-w-2xl">
+      <img
+        src="/images/technology/step-1-aspiration.svg"
+        alt=""
+        class="tech-advantages__img"
+        loading="lazy"
+        width="560"
+        height="360"
+        aria-hidden="true"
+      />
+    </div>
+
+    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        advantages.items.map((item, i) => (
+          <article class="spot-card tech-advantages__card">
+            <SpotCardBlob color={cardColors[i]} />
+            <span class="tech-advantages__num relative z-10">{i + 1}</span>
+            <h3 class="relative z-10 mt-2 font-display text-base font-bold text-brand-navy">
+              {item.title}
+            </h3>
+            <p class="relative z-10 mt-2 text-sm leading-relaxed text-brand-navy/75">{item.text}</p>
+          </article>
+        ))
+      }
+    </div>
+
+    <p class="tech-advantages__bridge mx-auto mt-12 max-w-3xl text-center text-base leading-relaxed text-brand-navy/85">
+      {advantages.bridge}
+    </p>
+  </div>
+</section>

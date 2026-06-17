@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageBanner from '../../components/PageBanner.astro';
+import ProductionPage from '../../components/ProductionPage.astro';
+import SpotDots from '../../components/SpotDots.astro';
+import SpotCardBlob from '../../components/SpotCardBlob.astro';
+import { getContent } from '../../content/site';
+
+const content = getContent('en');
+const futureColors = ['#5b3f8c', '#c23b7a'];
+---
+
+<BaseLayout>
+  <PageBanner title={content.production.title} subtitle={content.production.subtitle} palette="about" />
+
+  <ProductionPage content={content} />
+
+  <section class="border-t border-brand-navy/5 bg-white py-20">
+    <div class="section-container">
+      <SpotDots class="mb-4" />
+      <h2 class="section-title">{content.future.title}</h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
+        {
+          content.future.items.map((item, i) => (
+            <div class="spot-card">
+              <SpotCardBlob color={futureColors[i]} />
+              <span class="spot-badge-amber relative z-10">{item.badge}</span>
+              <h3 class="relative z-10 mt-4 font-display text-xl font-bold text-brand-navy">{item.title}</h3>
+              <p class="relative z-10 mt-2 text-sm text-brand-navy/70">{item.text}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>

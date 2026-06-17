@@ -1,0 +1,22 @@
+---
+import CowSpots from './CowSpots.astro';
+import type { spotPalettes } from '../data/spot-paths';
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  palette: keyof typeof spotPalettes;
+}
+
+const { title, subtitle, palette } = Astro.props;
+---
+
+<section class="page-banner relative overflow-hidden py-16 sm:py-20">
+  <CowSpots variant="page" palette={palette} />
+  <div class="section-container relative z-10">
+    <div class="page-banner__content">
+      <h1 class="page-banner__title">{title}</h1>
+      {subtitle && <p class="page-banner__subtitle">{subtitle}</p>}
+    </div>
+  </div>
+</section>

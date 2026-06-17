@@ -1,0 +1,22 @@
+---
+interface Props {
+  lat: number;
+  lon: number;
+  title: string;
+  zoom?: number;
+}
+
+const { lat, lon, title, zoom = 16 } = Astro.props;
+const src = `https://yandex.ru/map-widget/v1/?ll=${lon}%2C${lat}&z=${zoom}&pt=${lon}%2C${lat}%2Cpm2rdm`;
+---
+
+<div class="contact-map">
+  <iframe
+    src={src}
+    title={title}
+    class="contact-map__frame"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    allowfullscreen
+  ></iframe>
+</div>

@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageBanner from '../../components/PageBanner.astro';
+import ContactSection from '../../components/ContactSection.astro';
+import { getContent } from '../../content/site';
+
+const content = getContent('en');
+---
+
+<BaseLayout>
+  <PageBanner title={content.contact.title} subtitle={content.contact.subtitle} palette="contact" />
+  <ContactSection content={content} />
+</BaseLayout>

@@ -1,0 +1,109 @@
+---
+import type { SiteContent } from '../content/site';
+import ContactMap from './ContactMap.astro';
+import SpotDots from './SpotDots.astro';
+import SpotCardBlob from './SpotCardBlob.astro';
+
+interface Props {
+  content: SiteContent;
+}
+
+const { content } = Astro.props;
+
+const mapLat = 55.633871;
+const mapLon = 37.45372;
+const mapsSearchUrl =
+  'https://yandex.ru/maps/?text=%D0%91%D0%A6%20G10%2C%20%D0%9A%D0%B8%D0%B5%D0%B2%D1%81%D0%BA%D0%BE%D0%B5%20%D1%88%D0%BE%D1%81%D1%81%D0%B5%2C%2021-%D0%B9%20%D0%BA%D0%BC%2C%203%D1%811%2C%20%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0';
+---
+
+<section class="py-20">
+  <div class="section-container">
+    <div class="mx-auto grid max-w-4xl gap-8 lg:grid-cols-5">
+      <div class="spot-card space-y-4 lg:col-span-2">
+        <SpotCardBlob color="#7ec8e3" />
+        <SpotDots class="relative z-10 mb-2" />
+        <div class="relative z-10">
+          <div class="text-xs font-bold uppercase tracking-wide text-brand-navy/50">{content.contact.labels.phone}</div>
+          <a href={`tel:${content.contact.phone.replace(/\s/g, '')}`} class="text-lg font-bold text-brand-navy transition hover:text-spot-coral">
+            {content.contact.phone}
+          </a>
+        </div>
+        <div class="relative z-10">
+          <div class="text-xs font-bold uppercase tracking-wide text-brand-navy/50">{content.contact.labels.email}</div>
+          <a href={`mailto:${content.contact.email}`} class="text-lg font-bold text-brand-navy transition hover:text-spot-coral">
+            {content.contact.email}
+          </a>
+        </div>
+        <div class="relative z-10">
+          <div class="text-xs font-bold uppercase tracking-wide text-brand-navy/50">{content.contact.labels.location}</div>
+          <a
+            href={mapsSearchUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-1 block text-sm leading-relaxed text-brand-navy transition hover:text-spot-coral"
+          >
+            <span class="block font-bold">{content.contact.location.name}</span>
+            <span class="text-brand-navy/75">{content.contact.location.address}</span>
+          </a>
+        </div>
+      </div>
+
+      <form
+        class="spot-card space-y-4 lg:col-span-3"
+        action="https://formsubmit.co/info@zooembrio.ru"
+        method="POST"
+      >
+        <SpotCardBlob color="#2ab0b3" />
+        <input type="hidden" name="_subject" value="Заявка с сайта ZOOEMBRIO" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" />
+        <div class="relative z-10 grid gap-4 sm:grid-cols-2">
+          <label class="block">
+            <span class="mb-1 block text-xs font-bold text-brand-navy/65">{content.contact.form.name}</span>
+            <input
+              type="text"
+              name="name"
+              required
+              class="w-full rounded-2xl border-2 border-brand-navy/10 bg-white px-4 py-2.5 text-sm outline-none focus:border-spot-coral"
+            />
+          </label>
+          <label class="block">
+            <span class="mb-1 block text-xs font-bold text-brand-navy/65">{content.contact.form.company}</span>
+            <input
+              type="text"
+              name="company"
+              class="w-full rounded-2xl border-2 border-brand-navy/10 bg-white px-4 py-2.5 text-sm outline-none focus:border-spot-coral"
+            />
+          </label>
+        </div>
+        <label class="relative z-10 block">
+          <span class="mb-1 block text-xs font-bold text-brand-navy/65">{content.contact.form.email}</span>
+          <input
+            type="email"
+            name="email"
+            required
+            class="w-full rounded-2xl border-2 border-brand-navy/10 bg-white px-4 py-2.5 text-sm outline-none focus:border-spot-coral"
+          />
+        </label>
+        <label class="relative z-10 block">
+          <span class="mb-1 block text-xs font-bold text-brand-navy/65">{content.contact.form.message}</span>
+          <textarea
+            name="message"
+            rows="4"
+            class="w-full rounded-2xl border-2 border-brand-navy/10 bg-white px-4 py-2.5 text-sm outline-none focus:border-spot-coral"
+          ></textarea>
+        </label>
+        <button type="submit" class="btn-primary relative z-10 w-full sm:w-auto">{content.contact.form.submit}</button>
+        <p class="relative z-10 text-xs text-brand-navy/50">{content.contact.form.note}</p>
+      </form>
+    </div>
+
+    <div class="contact-map-wrap mx-auto mt-12 max-w-4xl">
+      <ContactMap
+        lat={mapLat}
+        lon={mapLon}
+        title={`${content.contact.location.name}, ${content.contact.location.address}`}
+      />
+    </div>
+  </div>
+</section>

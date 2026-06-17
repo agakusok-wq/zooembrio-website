@@ -1,0 +1,61 @@
+---
+import type { Locale } from '../i18n';
+import type { SiteContent } from '../content/site';
+import { localizedPath } from '../i18n';
+import CowSpots from './CowSpots.astro';
+import SpotDots from './SpotDots.astro';
+
+interface Props {
+  locale: Locale;
+  content: SiteContent;
+}
+
+const { locale, content } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="relative overflow-hidden border-t border-brand-navy/5">
+  <CowSpots variant="footer" />
+  <div class="section-container relative z-10 grid gap-8 py-12 md:grid-cols-3">
+    <div>
+      <img src="/images/logo/art-logo.png" alt="АРТ" class="mb-4 h-12 w-auto" width="140" height="48" />
+      <p class="text-sm font-medium text-brand-navy/75">{content.footer.tagline}</p>
+      <SpotDots class="mt-4" />
+    </div>
+
+    <div>
+      <h3 class="mb-3 font-display text-sm font-bold uppercase tracking-wide text-brand-navy">ZOOEMBRIO</h3>
+      <ul class="space-y-2 text-sm font-medium text-brand-navy/70">
+        {
+          content.nav.map((item) => (
+            <li>
+              <a href={localizedPath(item.href, locale)} class="transition hover:text-spot-coral">
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="mb-3 font-display text-sm font-bold uppercase tracking-wide text-brand-navy">
+        {locale === 'ru' ? 'Контакты' : 'Contact'}
+      </h3>
+      <p class="text-sm font-medium text-brand-navy/75">
+        <a href={`tel:${content.contact.phone.replace(/\s/g, '')}`} class="transition hover:text-spot-coral">
+          {content.contact.phone}
+        </a>
+      </p>
+      <p class="mt-2 text-sm font-medium text-brand-navy/75">
+        <a href={`mailto:${content.contact.email}`} class="transition hover:text-spot-coral">
+          {content.contact.email}
+        </a>
+      </p>
+    </div>
+  </div>
+
+  <div class="relative z-10 border-t border-brand-navy/10 py-4 text-center text-xs font-medium text-brand-navy/50">
+    {content.footer.rights.replace('©', `© ${year}`)}
+  </div>
+</footer>

@@ -1,0 +1,46 @@
+---
+import { brandSpotColors } from '../data/brand-colors';
+import { cornerSpotPaths, spotPalettes, type SpotColor } from '../data/spot-paths';
+
+interface Props {
+  variant?: 'hero' | 'footer' | 'page' | 'minimal';
+  palette?: keyof typeof spotPalettes;
+}
+
+const { variant = 'hero', palette = 'hero' } = Astro.props;
+
+const colors = spotPalettes[palette] ?? spotPalettes.hero;
+
+const cornerClass = ['cow-spot-corner--tl', 'cow-spot-corner--bl', 'cow-spot-corner--tr', 'cow-spot-corner--br'];
+
+const spotIndices =
+  variant === 'page'
+    ? [0, 2]
+    : variant === 'footer'
+      ? [1]
+      : variant === 'minimal'
+        ? [0, 2]
+        : [0, 1, 2, 3];
+---
+
+<div class={`cow-spots cow-spots--${variant}`} aria-hidden="true">
+  {
+    spotIndices.map((i) => {
+      const colorName = colors[i] as SpotColor;
+      return (
+        <svg
+          class={`cow-spot-corner ${cornerClass[i]}`}
+          viewBox="0 0 256 256"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            class="torn-paper"
+            fill={brandSpotColors[colorName]}
+            d={cornerSpotPaths[i]}
+          />
+        </svg>
+      );
+    })
+  }
+</div>

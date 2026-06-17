@@ -1,0 +1,81 @@
+---
+import { brandSpotColors } from '../data/brand-colors';
+import type { SiteContent } from '../content/site';
+import TechStepSpot from './TechStepSpot.astro';
+
+interface Props {
+  content: SiteContent;
+}
+
+const { content } = Astro.props;
+const stepSpotClass = ['tech-step-spot--0', 'tech-step-spot--1', 'tech-step-spot--2', 'tech-step-spot--3'];
+---
+
+<section class="tech-detail">
+  <div class="section-container">
+    <p class="tech-detail__intro mx-auto max-w-3xl text-center text-base leading-relaxed text-brand-navy/80">
+      {content.technology.solutionsIntro}
+    </p>
+
+    <div class="tech-detail__steps mt-16 space-y-20 lg:space-y-28">
+      {
+        content.technology.steps.map((step, index) => (
+          <article
+            class:list={['tech-detail__step', index % 2 === 1 && 'tech-detail__step--reverse']}
+            id={`step-${index + 1}`}
+          >
+            <div class="tech-detail__visual">
+              <div class="tech-detail__figure">
+                <img
+                  src={step.image}
+                  alt={step.imageAlt}
+                  class="tech-detail__img"
+                  loading="lazy"
+                  width="560"
+                  height="360"
+                />
+              </div>
+              <p class="tech-detail__caption">{step.imageAlt}</p>
+            </div>
+
+            <div class="tech-detail__body">
+              <div class="tech-detail__header">
+                <TechStepSpot index={index} colorClass={stepSpotClass[index]} />
+                <div>
+                  <span class="tech-detail__product">{step.product}</span>
+                  <h2 class="tech-detail__title">
+                    <span class="tech-detail__num">{content.technology.stageLabel} {index + 1}</span>
+                    {step.title}
+                  </h2>
+                </div>
+              </div>
+
+              <div class="tech-detail__block">
+                <h3 class="tech-detail__label">{content.technology.whatIsLabel}</h3>
+                <p class="tech-detail__text">{step.whatIs}</p>
+              </div>
+
+              <div class="tech-detail__block">
+                <h3 class="tech-detail__label">{step.howTitle}</h3>
+                <ol class="tech-detail__list">
+                  {step.howSteps.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ol>
+              </div>
+
+              <div class="tech-detail__medium" style={`--step-color: ${[brandSpotColors.teal, brandSpotColors.wash, brandSpotColors.green, brandSpotColors.wam][index]}`}>
+                <span class="tech-detail__medium-tag">{step.product}</span>
+                <p>{step.mediumNote}</p>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    <p class="tech-detail__note mx-auto mt-16 max-w-2xl text-center text-sm text-brand-navy/60">
+      {content.technology.note}
+    </p>
+  </div>
+</section>

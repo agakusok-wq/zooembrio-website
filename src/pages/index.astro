@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import TechnologySteps from '../components/TechnologySteps.astro';
+import ProductGrid from '../components/ProductGrid.astro';
+import PartnersSection from '../components/PartnersSection.astro';
+import ReviewsSection from '../components/ReviewsSection.astro';
+import HomeProductionSection from '../components/HomeProductionSection.astro';
+import CowSpots from '../components/CowSpots.astro';
+import SpotCardBlob from '../components/SpotCardBlob.astro';
+import { getContent } from '../content/site';
+import { getLocaleFromUrl, localizedPath } from '../i18n';
+
+const locale = getLocaleFromUrl(Astro.url);
+const content = getContent(locale);
+const trustColors = ['#7ec8e3', '#2ab0b3', '#f09020'];
+---
+
+<BaseLayout>
+  <HeroSection locale={locale} content={content} />
+
+  <section class="relative overflow-hidden py-16">
+    <CowSpots variant="minimal" />
+    <div class="section-container relative z-10">
+      <h2 class="section-title text-center">{content.trust.title}</h2>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        {
+          content.trust.items.map((item, i) => (
+            <div class="spot-card">
+              <SpotCardBlob color={trustColors[i]} />
+              <h3 class="relative z-10 font-display text-lg font-bold text-brand-navy">{item.title}</h3>
+              <p class="relative z-10 mt-2 text-sm leading-relaxed text-brand-navy/75">{item.text}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <TechnologySteps content={content} />
+  <ProductGrid locale={locale} content={content} />
+  <PartnersSection content={content} />
+  <ReviewsSection content={content} />
+  <HomeProductionSection locale={locale} content={content} />
+
+  <section class="cta-spot">
+    <CowSpots variant="footer" />
+    <div class="cta-spot__content section-container text-center">
+      <h2 class="font-display text-3xl font-extrabold sm:text-4xl">{content.contact.title}</h2>
+      <p class="mx-auto mt-4 max-w-xl text-white/90">{content.contact.subtitle}</p>
+      <a
+        href={localizedPath('/contact', locale)}
+        class="mt-8 inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-bold text-spot-coral shadow-lg transition hover:bg-brand-cream"
+      >
+        {content.hero.ctaPrimary}
+      </a>
+    </div>
+  </section>
+</BaseLayout>

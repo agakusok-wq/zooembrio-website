@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageBanner from '../../components/PageBanner.astro';
+import ProductGrid from '../../components/ProductGrid.astro';
+import { getContent } from '../../content/site';
+
+const locale = 'en' as const;
+const content = getContent(locale);
+---
+
+<BaseLayout>
+  <PageBanner title={content.products.title} subtitle={content.products.subtitle} palette="products" />
+  <ProductGrid locale={locale} content={content} />
+</BaseLayout>

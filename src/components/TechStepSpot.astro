@@ -1,0 +1,27 @@
+---
+import { brandSpotColors } from '../data/brand-colors';
+import { spotStepBadge } from '../data/spot-paths';
+
+interface Props {
+  index: number;
+  colorClass: string;
+}
+
+const { index, colorClass } = Astro.props;
+
+const stepColorMap: Record<string, keyof typeof brandSpotColors> = {
+  'tech-step-spot--0': 'teal',
+  'tech-step-spot--1': 'wash',
+  'tech-step-spot--2': 'green',
+  'tech-step-spot--3': 'wam',
+};
+
+const fill = brandSpotColors[stepColorMap[colorClass] ?? 'teal'];
+---
+
+<div class="tech-step-spot" aria-hidden="true">
+  <svg viewBox="0 0 256 256" class="tech-step-spot__svg" xmlns="http://www.w3.org/2000/svg">
+    <path class="torn-paper" d={spotStepBadge} fill={fill} />
+  </svg>
+  <span class="tech-step-spot__num">{index + 1}</span>
+</div>

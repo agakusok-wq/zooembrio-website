@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 360" fill="none" aria-hidden="true">
+  <rect width="560" height="360" rx="20" fill="#faf8f5"/>
+  <!-- 0=O A 2>4>9 -->
+  <rect x="88" y="168" width="130" height="72" rx="12" fill="#7ec8e3" opacity="0.25" stroke="#7ec8e3" stroke-width="2"/>
+  <path d="M108 188h90M108 202h90M108 216h90" stroke="#7ec8e3" stroke-width="1" opacity="0.6"/>
+  <text x="153" y="158" text-anchor="middle" fill="#1a2b4a" font-family="Inter, sans-serif" font-size="10">2>4O=0O 10=O 37 °C</text>
+  <!-- @8>B>? 2 10=5 -->
+  <rect x="128" y="196" width="72" height="10" rx="5" fill="#fff" stroke="#1a2b4a" stroke-width="1.5"/>
+  <circle cx="152" cy="201" r="4" fill="#e8d44a" stroke="#e8482a" stroke-width="1"/>
+  <!-- WaM1 WaM2 -->
+  <rect x="300" y="108" width="48" height="88" rx="8" fill="#c23b7a" opacity="0.15" stroke="#c23b7a" stroke-width="2"/>
+  <rect x="312" y="96" width="24" height="14" rx="3" fill="#c23b7a"/>
+  <text x="324" y="155" text-anchor="middle" fill="#1a2b4a" font-family="Montserrat, sans-serif" font-size="11" font-weight="700">WaM1</text>
+  <rect x="368" y="108" width="48" height="88" rx="8" fill="#c23b7a" opacity="0.25" stroke="#c23b7a" stroke-width="2"/>
+  <rect x="380" y="96" width="24" height="14" rx="3" fill="#c23b7a"/>
+  <text x="392" y="155" text-anchor="middle" fill="#1a2b4a" font-family="Montserrat, sans-serif" font-size="11" font-weight="700">WaM2</text>
+  <!-- !B@5;:8 MB0?>2 -->
+  <path d="M200 200h88" stroke="#c23b7a" stroke-width="2"/>
+  <path d="M348 152h16" stroke="#c23b7a" stroke-width="2"/>
+  <path d="M416 152h24" stroke="#c23b7a" stroke-width="2" stroke-dasharray="4 3"/>
+  <!-- '0H0 A 2>AAB0=>2;5==K< >>F8B>< -->
+  <ellipse cx="420" cy="232" rx="72" ry="30" fill="#fff" stroke="#1a2b4a" stroke-width="2"/>
+  <ellipse cx="420" cy="228" rx="58" ry="22" fill="#c23b7a" opacity="0.08"/>
+  <circle cx="420" cy="228" r="7" fill="#e8d44a" stroke="#e8482a" stroke-width="1.2"/>
+  <text x="420" y="278" text-anchor="middle" fill="#1a2b4a" font-family="Inter, sans-serif" font-size="10">3>B>2 : 40;L=59H59 @01>B5</text>
+  <text x="280" y="310" text-anchor="middle" fill="#1a2b4a" font-family="Inter, sans-serif" font-size="12" opacity="0.7"> 07<>@>7:0: 10=O ’ WaM1 ’ WaM2 ’ >>F8B</text>
+</svg>

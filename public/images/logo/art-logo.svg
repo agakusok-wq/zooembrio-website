@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 160" fill="none">
+  <rect width="400" height="160" rx="20" fill="#f7f5f0"/>
+  <ellipse cx="120" cy="72" rx="42" ry="34" fill="#2ab0b3"/>
+  <path d="M78 72c-6-18 10-34 28-34 12 0 22 6 28 16" stroke="#1a2b4a" stroke-width="3" stroke-linecap="round"/>
+  <path d="M148 58c8-6 18-4 24 4" stroke="#1a2b4a" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="104" cy="68" r="4" fill="#1a2b4a"/>
+  <circle cx="132" cy="68" r="4" fill="#1a2b4a"/>
+  <path d="M96 88c8 10 24 10 32 0" stroke="#1a2b4a" stroke-width="2.5" stroke-linecap="round"/>
+  <text x="220" y="95" fill="#1a2b4a" font-family="Montserrat, Arial, sans-serif" font-size="56" font-weight="700" letter-spacing="6">ART</text>
+  <text x="220" y="125" fill="#1a2b4a" font-family="Inter, Arial, sans-serif" font-size="14" opacity="0.6">ZOOEMBRIO</text>
+</svg>

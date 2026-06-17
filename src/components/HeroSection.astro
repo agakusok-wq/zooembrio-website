@@ -1,0 +1,51 @@
+---
+import CowSpots from './CowSpots.astro';
+import type { Locale } from '../i18n';
+import type { SiteContent } from '../content/site';
+import { localizedPath } from '../i18n';
+
+interface Props {
+  locale: Locale;
+  content: SiteContent;
+}
+
+const { locale, content } = Astro.props;
+---
+
+<section class="hero-spots relative overflow-hidden py-20 sm:py-28">
+  <CowSpots variant="hero" palette="hero" />
+
+  <div class="section-container relative z-20 grid items-center gap-12 lg:grid-cols-2">
+    <div>
+      <p class="hero-eyebrow">{content.hero.eyebrow}</p>
+      <h1 class="hero-title">{content.hero.title}</h1>
+      <p class="mt-6 max-w-xl text-lg leading-relaxed text-brand-navy/80">{content.hero.subtitle}</p>
+      <div class="mt-8 flex flex-wrap gap-4">
+        <a href={localizedPath('/contact', locale)} class="btn-primary">{content.hero.ctaPrimary}</a>
+        <a href={localizedPath('/technology', locale)} class="btn-outline">{content.hero.ctaSecondary}</a>
+      </div>
+    </div>
+
+    <div class="relative">
+      <div class="hero-logo-card">
+        <img
+          src="/images/logo/art-logo.png"
+          alt="АРТ ZOOEMBRIO"
+          class="mx-auto h-36 w-auto object-contain"
+          width="320"
+          height="144"
+        />
+        <div class="mt-8 grid grid-cols-3 gap-4 border-t border-brand-navy/10 pt-8">
+          {
+            content.hero.stats.map((stat) => (
+              <div class="text-center">
+                <div class="font-display text-2xl font-bold text-spot-coral">{stat.value}</div>
+                <div class="mt-1 text-xs font-medium text-brand-navy/65">{stat.label}</div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

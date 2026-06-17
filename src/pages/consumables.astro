@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getContent } from '../content/site';
+import { getLocaleFromUrl } from '../i18n';
+
+const locale = getLocaleFromUrl(Astro.url);
+const title = locale === 'ru' ? 'Пластик и расходники' : 'Plastics & consumables';
+---
+
+<BaseLayout>
+  <section class="section-container py-32 text-center">
+    <span class="rounded-full bg-brand-navy/10 px-4 py-1 text-sm font-semibold text-brand-navy">
+      {locale === 'ru' ? 'Скоро' : 'Coming soon'}
+    </span>
+    <h1 class="section-title mt-6">{title}</h1>
+    <p class="mx-auto mt-4 max-w-xl text-brand-navy/70">
+      {
+        locale === 'ru'
+          ? 'Линейка пластиковых изделий для протоколов ВРТ появится в ближайших обновлениях.'
+          : 'Plasticware for ART protocols will be available in upcoming updates.'
+      }
+    </p>
+    <a href={locale === 'ru' ? '/' : '/en'} class="btn-primary mt-8 inline-flex">
+      {locale === 'ru' ? 'На главную' : 'Back to home'}
+    </a>
+  </section>
+</BaseLayout>

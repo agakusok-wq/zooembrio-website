@@ -1,0 +1,20 @@
+---
+import { spotCardCorner, spotCardCorners } from '../data/spot-paths';
+
+interface Props {
+  color: string;
+  variant?: string;
+}
+
+const { color, variant } = Astro.props;
+const d = (variant && spotCardCorners[variant]) || spotCardCorner;
+---
+
+<svg
+  class="spot-card__blob"
+  viewBox="0 0 256 256"
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path class="torn-paper" d={d} fill={color} />
+</svg>

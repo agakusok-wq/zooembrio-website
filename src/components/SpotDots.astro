@@ -1,0 +1,14 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<div class={`spot-dots ${className}`} aria-hidden="true">
+  <span class="spot-dots__item spot-dots__item--white"></span>
+  <span class="spot-dots__item spot-dots__item--coral"></span>
+  <span class="spot-dots__item spot-dots__item--sky"></span>
+  <span class="spot-dots__item spot-dots__item--amber"></span>
+</div>
