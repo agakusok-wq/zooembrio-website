@@ -47,6 +47,7 @@ echo   3. Выберите репозиторий zooembrio-website
 echo   4. Настройки сборки:
 echo        Build command:    npm run build
 echo        Build output:     dist
+echo        Deploy command:   ОСТАВИТЬ ПУСТЫМ (удалить wrangler versions upload!)
 echo        Production branch: main
 echo        Node version:     20
 echo   5. Save and Deploy
