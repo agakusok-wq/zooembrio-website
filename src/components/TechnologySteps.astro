@@ -1,19 +1,23 @@
 ---
 import { brandSpotColors } from '../data/brand-colors';
 import type { SiteContent } from '../content/site';
+import type { Locale } from '../i18n';
+import { localizedPath } from '../i18n';
 import SpotDots from './SpotDots.astro';
-import TechStepSpot from './TechStepSpot.astro';
 import SpotCardBlob from './SpotCardBlob.astro';
 
 interface Props {
   content: SiteContent;
+  locale: Locale;
 }
 
-const { content } = Astro.props;
-const stepSpotClass = ['tech-step-spot--0', 'tech-step-spot--1', 'tech-step-spot--2', 'tech-step-spot--3'];
-const stepColors = [
+const { content, locale } = Astro.props;
+const { advantages } = content.technology;
+const cardColors = [
   brandSpotColors.teal,
+  brandSpotColors.sky,
   brandSpotColors.wash,
+  brandSpotColors.amber,
   brandSpotColors.green,
   brandSpotColors.wam,
 ];
@@ -21,32 +25,50 @@ const stepColors = [
 
 <section class="relative overflow-hidden py-20">
   <div class="section-container relative z-10">
-    <div class="mx-auto mb-14 max-w-2xl text-center">
+    <div class="mx-auto mb-10 max-w-3xl text-center">
       <SpotDots class="mx-auto mb-4 justify-center" />
       <h2 class="section-title">{content.technology.title}</h2>
       <p class="mt-4 text-brand-navy/70">{content.technology.subtitle}</p>
     </div>
 
-    <div class="relative mx-auto max-w-3xl space-y-8">
+    <div class="tech-cycle mx-auto max-w-5xl">
+      <img
+        src={content.technology.cycleImage}
+        alt={content.technology.cycleImageAlt}
+        class="tech-cycle__img"
+        loading="lazy"
+        width="2560"
+        height="1440"
+      />
+    </div>
+
+    <div class="mx-auto mt-12 max-w-3xl space-y-5 text-center">
+      <p class="text-base leading-relaxed text-brand-navy/85">{advantages.intro}</p>
+      <p class="text-base leading-relaxed text-brand-navy/80">{advantages.forBreeders}</p>
+    </div>
+
+    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {
-        content.technology.steps.map((step, index) => (
-          <div class="relative flex gap-6 md:gap-8">
-            <TechStepSpot index={index} colorClass={stepSpotClass[index]} />
-            <div class="spot-card flex-1">
-              <SpotCardBlob color={stepColors[index]} />
-              <div class="relative z-10 mb-1 text-xs font-bold uppercase tracking-wide text-spot-coral">
-                {step.product}
-              </div>
-              <h3 class="relative z-10 font-display text-xl font-bold text-brand-navy">{step.title}</h3>
-              <p class="relative z-10 mt-2 text-sm leading-relaxed text-brand-navy/75">{step.text}</p>
-            </div>
-          </div>
+        advantages.items.map((item, i) => (
+          <article class="spot-card tech-advantages__card">
+            <SpotCardBlob color={cardColors[i]} />
+            <span class="tech-advantages__num relative z-10">{i + 1}</span>
+            <h3 class="relative z-10 mt-2 font-display text-base font-bold text-brand-navy">
+              {item.title}
+            </h3>
+            <p class="relative z-10 mt-2 text-sm leading-relaxed text-brand-navy/75">{item.text}</p>
+          </article>
         ))
       }
     </div>
 
-    <p class="relative z-10 mx-auto mt-10 max-w-2xl text-center text-sm text-brand-navy/60">
-      {content.technology.note}
-    </p>
+    <div class="mx-auto mt-12 max-w-3xl text-center">
+      <p class="tech-advantages__bridge text-base leading-relaxed text-brand-navy/85">
+        {advantages.homeBridge}
+      </p>
+      <a href={localizedPath('/technology', locale)} class="btn-outline mt-8">
+        {locale === 'ru' ? 'Подробнее о технологии' : 'Learn more about the technology'}
+      </a>
+    </div>
   </div>
 </section>

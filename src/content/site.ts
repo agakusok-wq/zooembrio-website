@@ -48,12 +48,16 @@ export type SiteContent = {
   technology: {
     title: string;
     subtitle: string;
+    cycleImage: string;
+    cycleImageAlt: string;
     advantages: {
       title: string;
       subtitle: string;
       intro: string;
+      forBreeders: string;
       items: { title: string; text: string }[];
       bridge: string;
+      homeBridge: string;
     };
     solutionsIntro: string;
     stageLabel: string;
@@ -153,7 +157,7 @@ const content: Record<Locale, SiteContent> = {
     meta: {
       title: 'ZOOEMBRIO — среды АРТ для in vivo оплодотворения лошадей',
       description:
-        'Производитель сред для вымывания, отмывки, заморозки и разморозки ооцитов и эмбрионов лошадей. Линейка TSM-Asp, Wash, ViT1/2, WaM1/2.',
+        'Производитель сред для вымывания, отмывки, заморозки и девитрификации ооцитов и эмбрионов лошадей. Линейка TSM-Asp, Wash, ViT1/2, WaM1/2/3.',
     },
     nav: [
       { href: '/', label: 'Главная' },
@@ -166,7 +170,7 @@ const content: Record<Locale, SiteContent> = {
       eyebrow: 'ZOOEMBRIO · Assisted Reproductive Technologies',
       title: 'Среды АРТ для in vivo оплодотворения лошадей',
       subtitle:
-        'Полный цикл сопровождения процесса: вымывание, отмывка, витрификация и разморозка. Собственное производство, экспертная рецептура, стабильное качество партии за партией.',
+        'Полный цикл сопровождения процесса: вымывание, отмывка, витрификация и девитрификация. Собственное производство, экспертная рецептура, стабильное качество партии за партией.',
       ctaPrimary: 'Запросить прайс',
       ctaSecondary: 'Смотреть технологию',
       stats: [
@@ -180,7 +184,7 @@ const content: Record<Locale, SiteContent> = {
       items: [
         {
           title: 'Специализация на лошадях',
-          text: 'Среды разработаны под протокол in vivo оплодотворения и сопровождают весь путь от вымывания до разморозки.',
+          text: 'Среды разработаны под протокол in vivo оплодотворения и сопровождают весь путь от вымывания до девитрификации.',
         },
         {
           title: 'Контроль производства',
@@ -196,43 +200,50 @@ const content: Record<Locale, SiteContent> = {
       title: 'Технология in vivo оплодотворения лошадей',
       subtitle:
         'Протокол ZOOEMBRIO выстроен вокруг четырёх последовательных этапов. Каждая среда решает конкретную задачу и используется в строго определённой точке процесса.',
+      cycleImage: '/images/technology/technology-cycle.png',
+      cycleImageAlt:
+        'Схема полного цикла in vivo протокола: вымывание в TSM-Asp, отмывка Wash, витрификация ViT1/ViT2 и девитрификация WaM1/WaM2/WaM3',
       advantages: {
         title: 'Преимущества технологии получения и вымывания ооцитов',
         subtitle:
           'Трансвагинальная аспирация ооцитов (OPU) с последующим вымыванием — основа in vivo протокола для лошадей',
         intro:
-          'В отличие от классического флашинга эмбрионов, при котором кобыла должна быть оплодотворена и вынашивать эмбрион, технология аспирации ооцитов позволяет получать половые клетки напрямую из яичника живой кобылы. Первый и критически важный лабораторный шаг после аспирации — вымывание: отделение ооцитов от фолликулярной жидкости в специализированной среде с сохранением их жизнеспособности.',
+          'Племенное производство лошадей всё чаще опирается на технологии, которые позволяют сохранить и передать генетику ценных кобыл без классической схемы «оплодотворение — вынашивание — флашинг эмбриона». In vivo протокол с трансвагинальной аспирацией ооцитов (OPU) даёт доступ к половым клеткам напрямую из яичника живой матки — без необходимости, чтобы кобыла была оплодотворена и вынашивала эмбрион.',
+        forBreeders:
+          'Для племенных заводов, репродуктивных центров и владельцев спортивных кобыл это открывает практические возможности: получать ооциты от выдающихся донорш в удобное окно сезона, не прерывая спортивную карьеру и не перегружая матку повторными беременностями. Клетки можно витрифицировать и хранить в жидком азоте, а оплодотворение и перенос планировать по графику реципиентных кобыл и лаборатории. Критически важно, что успех всей программы начинается уже на первом лабораторном шаге — качественном вымывании ооцитов в специализированной среде. Линейка ZOOEMBRIO закрывает полный цикл после аспирации: от вымывания и отмывки до витрификации и девитрификации.',
         items: [
           {
             title: 'Генетика ценных кобыл без беременности',
-            text: 'Ооциты можно получить от выдающихся маток, не нагружая их вынашиванием потомства. Это особенно важно для племенных программ, где донорша продолжает выступать или используется ограниченно.',
+            text: 'Ооциты получают от чемпионок и племенных лидеров, не нагружая их вынашиванием. Донорша может продолжать выступать, участвовать в селекционных показах или использоваться ограниченно — при этом её генетический материал остаётся доступным для программы воспроизводства.',
           },
           {
             title: 'Подходит спортивным кобылм',
-            text: 'Аспирацию планируют в удобное окно вне соревновательного сезона или между стартами. Процедура занимает около 30–40 минут под седацией, после чего кобыла может вернуться к обычному режиму.',
+            text: 'Аспирацию планируют между стартами или вне соревновательного сезона. Процедура занимает 30–40 минут под седацией; после неё кобыла возвращается к тренировкам. Для производителей спортивного поголовья это способ совместить карьеру лошади и племенную работу.',
           },
           {
             title: 'Решение для проблемных маток',
-            text: 'Если классическое воспроизводство не даёт результата — хронический эндометрит, возрастные изменения, травмы половых путей — получение ооцитов напрямую из яичника открывает путь к продолжению племенной линии.',
+            text: 'Если классическое воспроизводство не даёт результата — хронический эндометрит, возрастные изменения, травмы половых путей, низкая оплодотворяемость — прямое получение ооцитов из яичника открывает путь к продолжению линии без отказа от ценной генетики.',
           },
           {
             title: 'Гибкое планирование в течение года',
-            text: 'Аспирацию проводят при наличии фолликулов подходящего размера, не привязываясь жёстко к одному дню овуляции. Повторные процедуры возможны с интервалом 2–3 недели в течение сезона.',
+            text: 'Аспирацию проводят при наличии фолликулов подходящего размера, не привязываясь жёстко к одному дню овуляции. Повторные процедуры возможны с интервалом 2–3 недели. Племенной завод может распределять нагрузку на лабораторию и реципиентов в течение всего сезона.',
           },
           {
             title: 'Криоконсервация и логистика',
-            text: 'Ооциты и эмбрионы можно витрифицировать и хранить в жидком азоте, перенося в удобное время. Это снимает необходимость жёсткой синхронизации донорской и реципиентной кобыл.',
+            text: 'Ооциты и эмбрионы витрифицируют и хранят в жидком азоте, перенося в удобное время — в том числе в другой регион или на следующий сезон. Это снимает необходимость жёсткой синхронизации донорской и реципиентной кобыл и упрощает логистику для крупных племенных программ.',
           },
           {
             title: 'Качество вымывания определяет исход',
-            text: 'После аспирации ооциты чувствительны к составу среды, температуре и времени обработки. Правильное вымывание в TSM-Asp сохраняет морфологию клеток и задаёт успех всего последующего протокола — отмывки, заморозки и разморозки.',
+            text: 'После аспирации ооциты максимально чувствительны к составу среды, температуре и времени обработки. Правильное вымывание в TSM-Asp сохраняет морфологию клеток и задаёт успех всего последующего протокола — отмывки, витрификации и девитрификации. Именно поэтому среды для каждого этапа должны быть согласованы между собой.',
           },
         ],
         bridge:
-          'Именно поэтому каждый этап после аспирации требует специализированной среды. Ниже — как устроен протокол ZOOEMBRIO и какие решения мы предлагаем на каждом шаге.',
+          'Именно поэтому каждый этап после аспирации требует специализированной среды. Ниже — подробное описание каждого этапа протокола ZOOEMBRIO.',
+        homeBridge:
+          'На схеме — четыре этапа протокола и среды ZOOEMBRIO для каждого шага. Подробное описание каждого этапа — на странице «Технология».',
       },
       solutionsIntro:
-        'Линейка сред ZOOEMBRIO покрывает полный цикл: вымывание, отмывка, витрификация и разморозка. Для каждого этапа — подробное описание процесса и рекомендуемая среда.',
+        'Линейка сред ZOOEMBRIO покрывает полный цикл: вымывание, отмывка, витрификация и девитрификация. Для каждого этапа — подробное описание процесса и рекомендуемая среда.',
       stageLabel: 'Этап',
       whatIsLabel: 'Что это',
       steps: [
@@ -279,7 +290,7 @@ const content: Record<Locale, SiteContent> = {
           text: 'Для витрификации эмбрионов и ооцитов используется двухкомпонентный набор ViT1 и ViT2, обеспечивающий контролируемое замедление и фиксацию клеток.',
           product: 'ViT1 / ViT2',
           whatIs:
-            'Витрификация — сверхбыстрая заморозка, при которой клетка переходит в стеклообразное состояние без образования льда. Это позволяет сохранить ооциты и эмбрионы лошадей для длительного хранения в жидком азоте (−196 °C) с высокой выживаемостью после разморозки.',
+            'Витрификация — сверхбыстрая заморозка, при которой клетка переходит в стеклообразное состояние без образования льда. Это позволяет сохранить ооциты и эмбрионы лошадей для длительного хранения в жидком азоте (−196 °C) с высокой выживаемостью после девитрификации.',
           howTitle: 'Как выполняется этап',
           howSteps: [
             'Ооциты эквилибрируют в среде ViT1 — она подготавливает клетку к воздействию криопротекторов.',
@@ -290,27 +301,27 @@ const content: Record<Locale, SiteContent> = {
           ],
           mediumNote:
             'Набор ViT1 + ViT2 — двухступенчатая система: первая среда для эквилибрации, вторая — для финальной витрификации.',
-          image: '/images/technology/step-3-vitrification.svg',
-          imageAlt: 'Схема витрификации ооцитов с наборами ViT1 и ViT2',
+          image: '/images/products/vit.jpg',
+          imageAlt: 'Набор сред ViT1 и ViT2 для витрификации эмбрионов и ооцитов',
         },
         {
-          title: 'Разморозка',
-          text: 'При подготовке к переносу или дальнейшей работе применяется набор WaM1 и WaM2 для поэтапного выведения клеток из витрифицированного состояния.',
-          product: 'WaM1 / WaM2',
+          title: 'Девитрификация',
+          text: 'При подготовке к переносу или дальнейшей работе применяется набор WaM1, WaM2 и WaM3 для поэтапного выведения клеток из витрифицированного состояния.',
+          product: 'WaM1 / WaM2 / WaM3',
           whatIs:
-            'Разморозка — обратный процесс витрификации. Замороженный ооцит извлекают из жидкого азота, быстро нагревают и поэтапно выводят из криопротекторов в рабочую среду. Цель — восстановить жизнеспособность клетки для культивирования, оплодотворения или переноса.',
+            'Девитрификация — обратный процесс витрификации. Замороженный ооцит извлекают из жидкого азота, быстро нагревают и поэтапно выводят из криопротекторов в рабочую среду. Цель — восстановить жизнеспособность клетки для культивирования, оплодотворения или переноса.',
           howTitle: 'Как выполняется этап',
           howSteps: [
             'Криотоп извлекают из жидкого азота и сразу погружают в водяную баню 37 °C на несколько секунд.',
             'Ооцит переносят в среду WaM1 — она начинает удаление криопротекторов.',
-            'Последовательно переносят через порции WaM1 и WaM2 с соблюдением времени экспозиции.',
-            'После разморозки оценивают морфологию ооцита и его пригодность для дальнейшего использования.',
+            'Последовательно переносят через порции WaM1, WaM2 и WaM3 с соблюдением времени экспозиции.',
+            'После девитрификации оценивают морфологию ооцита и его пригодность для дальнейшего использования.',
             'Восстановленные ооциты используют в программе оплодотворения или культивирования.',
           ],
           mediumNote:
-            'Набор WaM1 + WaM2 обеспечивает плавный переход клетки из витрифицированного состояния в рабочую среду без осмотического шока.',
-          image: '/images/technology/step-4-thawing.svg',
-          imageAlt: 'Схема разморозки ооцита в водяной бане со средами WaM1 и WaM2',
+            'Комплект WaM1 + WaM2 + WaM3 обеспечивает плавный переход клетки из витрифицированного состояния в рабочую среду без осмотического шока.',
+          image: '/images/products/wam.jpg',
+          imageAlt: 'Набор сред WaM1 и WaM2 для девитрификации эмбрионов и ооцитов',
         },
       ],
       note:
@@ -349,11 +360,11 @@ const content: Record<Locale, SiteContent> = {
         },
         {
           id: 'wam',
-          name: 'WaM1 / WaM2',
+          name: 'WaM1 / WaM2 / WaM3',
           color: 'magenta',
-          packaging: 'Набор из двух компонентов',
-          description: 'Комплект сред для разморозки витрифицированных эмбрионов и ооцитов.',
-          volumes: ['Набор WaM1 + WaM2'],
+          packaging: 'Набор из трёх компонентов',
+          description: 'Комплект сред для девитрификации витрифицированных эмбрионов и ооцитов.',
+          volumes: ['Набор WaM1 + WaM2 + WaM3'],
           step: 4,
         },
       ],
@@ -365,6 +376,7 @@ const content: Record<Locale, SiteContent> = {
       sterile: {
         title: 'Стерильное производство',
         text: 'Среды ZOOEMBRIO выпускаются в контролируемых стерильных условиях. Производственные помещения и технологические процессы организованы с соблюдением высочайших стандартов чистоты, прослеживаемости и воспроизводимости — от приёмки сырья до выпуска готовой партии.',
+        image: '/images/production/facility.jpg',
         imageAlt: 'Фото производственной лаборатории',
         isoLabel: 'Сертификация ISO',
         isoText:
@@ -373,11 +385,11 @@ const content: Record<Locale, SiteContent> = {
       },
       formulation: {
         title: 'Собственная рецептура и валидация',
-        text: 'В лаборатории ZOOEMBRIO мы с нуля разработали и довели до производства все составы линейки — TSM-Asp, Wash, ViT1/ViT2 и WaM1/WaM2. Каждая рецептура создана под свой этап протокола in vivo оплодотворения лошадей и прошла полный цикл валидации: лабораторные и прикладные испытания, MEA-тесты на эмбриотоксичность и контроль бактериальных эндотоксинов. В серийный выпуск среды перешли только после подтверждения безопасности и эффективности.',
+        text: 'В лаборатории ZOOEMBRIO мы с нуля разработали и довели до производства все составы линейки — TSM-Asp, Wash, ViT1/ViT2 и WaM1/WaM2/WaM3. Каждая рецептура создана под свой этап протокола in vivo оплодотворения лошадей и прошла полный цикл валидации: лабораторные и прикладные испытания, MEA-тесты на эмбриотоксичность и контроль бактериальных эндотоксинов. В серийный выпуск среды перешли только после подтверждения безопасности и эффективности.',
         items: [
           {
             title: 'Разработка рецептур',
-            text: 'Составы TSM-Asp, Wash, ViT1/ViT2 и WaM1/WaM2 разработаны и оптимизированы в лаборатории ZOOEMBRIO с учётом специфики работы с ооцитами и эмбрионами лошадей.',
+            text: 'Составы TSM-Asp, Wash, ViT1/ViT2 и WaM1/WaM2/WaM3 разработаны и оптимизированы в лаборатории ZOOEMBRIO с учётом специфики работы с ооцитами и эмбрионами лошадей.',
           },
           {
             title: 'Успешное тестирование',
@@ -439,7 +451,7 @@ const content: Record<Locale, SiteContent> = {
         {
           name: 'Партнёр 1',
           role: 'Репродуктивная лаборатория',
-          text: 'Использует полный цикл сред ZOOEMBRIO — от вымывания TSM-Asp до разморозки WaM1/WaM2.',
+          text: 'Использует полный цикл сред ZOOEMBRIO — от вымывания TSM-Asp до девитрификации WaM1/WaM2/WaM3.',
           imageAlt: 'Фото партнёра',
         },
         {
@@ -451,7 +463,7 @@ const content: Record<Locale, SiteContent> = {
         {
           name: 'Партнёр 3',
           role: 'Лаборатория АРТ',
-          text: 'Применяет Wash, ViT1/ViT2 и WaM1/WaM2 в ежедневной лабораторной практике.',
+          text: 'Применяет Wash, ViT1/ViT2 и WaM1/WaM2/WaM3 в ежедневной лабораторной практике.',
           imageAlt: 'Фото партнёра',
         },
       ],
@@ -462,7 +474,7 @@ const content: Record<Locale, SiteContent> = {
       items: [
         {
           quote:
-            'Стабильный состав и предсказуемое поведение сред на всех этапах протокола — от аспирации до разморозки. Удобные фасовки под наш рабочий процесс.',
+            'Стабильный состав и предсказуемое поведение сред на всех этапах протокола — от аспирации до девитрификации. Удобные фасовки под наш рабочий процесс.',
           author: 'Специалист по репродукции',
           role: 'Репродуктивная лаборатория',
         },
@@ -483,6 +495,7 @@ const content: Record<Locale, SiteContent> = {
     homeProduction: {
       title: 'Наше производство',
       text: 'ZOOEMBRIO выпускает среды АРТ в стерильных условиях на собственной площадке. Производство сертифицировано по ISO — мы контролируем рецептуру, приготовление и розлив от сырья до готовой партии.',
+      image: '/images/production/facility.jpg',
       imageAlt: 'Фото производства',
       cta: 'Подробнее о производстве',
       highlights: [
@@ -547,7 +560,7 @@ const content: Record<Locale, SiteContent> = {
     meta: {
       title: 'ZOOEMBRIO — ART media for equine in vivo fertilization',
       description:
-        'Manufacturer of media for washing, rinsing, freezing and thawing of equine oocytes and embryos. TSM-Asp, Wash, ViT1/2, WaM1/2 product line.',
+        'Manufacturer of media for washing, rinsing, freezing and devitrification of equine oocytes and embryos. TSM-Asp, Wash, ViT1/2, WaM1/2/3 product line.',
     },
     nav: [
       { href: '/', label: 'Home' },
@@ -560,7 +573,7 @@ const content: Record<Locale, SiteContent> = {
       eyebrow: 'ZOOEMBRIO · Assisted Reproductive Technologies',
       title: 'ART media for equine in vivo fertilization',
       subtitle:
-        'Full-cycle support: washing, rinsing, vitrification and thawing. In-house manufacturing, expert formulations, consistent batch quality.',
+        'Full-cycle support: washing, rinsing, vitrification and devitrification. In-house manufacturing, expert formulations, consistent batch quality.',
       ctaPrimary: 'Request price list',
       ctaSecondary: 'View technology',
       stats: [
@@ -574,7 +587,7 @@ const content: Record<Locale, SiteContent> = {
       items: [
         {
           title: 'Equine specialization',
-          text: 'Media designed for the in vivo fertilization protocol, supporting the full path from washing to thawing.',
+          text: 'Media designed for the in vivo fertilization protocol, supporting the full path from washing to devitrification.',
         },
         {
           title: 'Production control',
@@ -590,43 +603,50 @@ const content: Record<Locale, SiteContent> = {
       title: 'Equine in vivo fertilization technology',
       subtitle:
         'The ZOOEMBRIO protocol is built around four sequential stages. Each medium addresses a specific task at a defined point in the process.',
+      cycleImage: '/images/technology/technology-cycle.png',
+      cycleImageAlt:
+        'Diagram of the full in vivo protocol cycle: washing in TSM-Asp, rinsing in Wash, vitrification with ViT1/ViT2 and devitrification with WaM1/WaM2/WaM3',
       advantages: {
         title: 'Advantages of oocyte collection and washing technology',
         subtitle:
           'Transvaginal oocyte aspiration (OPU) followed by washing is the foundation of the equine in vivo protocol',
         intro:
-          'Unlike classical embryo flushing — where the mare must be bred and carry the embryo — oocyte aspiration collects gametes directly from the ovary of a live mare. The first and critically important laboratory step after aspiration is washing: separating oocytes from follicular fluid in a specialized medium while maintaining their viability.',
+          'Equine breeding increasingly relies on technologies that preserve and pass on genetics from valuable mares without the classical path of breeding, pregnancy and embryo flushing. The in vivo protocol with transvaginal oocyte aspiration (OPU) provides direct access to gametes from the ovary of a live mare — without requiring her to be bred and carry an embryo.',
+        forBreeders:
+          'For breeding farms, reproductive centers and owners of performance mares, this opens practical options: collect oocytes from outstanding donors in a convenient seasonal window without interrupting competition careers or overloading the uterus with repeat pregnancies. Cells can be vitrified and stored in liquid nitrogen, while fertilization and transfer are scheduled around recipient mares and laboratory capacity. Success of the entire program starts at the first laboratory step — high-quality washing in a specialized medium. The ZOOEMBRIO line covers the full post-aspiration cycle: from washing and rinsing to vitrification and devitrification.',
         items: [
           {
             title: 'Genetics from valuable mares without pregnancy',
-            text: 'Oocytes can be collected from outstanding broodmares without the burden of carrying offspring. This is especially important in breeding programs where the donor continues to compete or has limited availability.',
+            text: 'Oocytes are collected from champions and leading broodmares without the burden of carrying offspring. The donor can keep competing, attend selection events or remain available on a limited schedule while her genetic material stays accessible for the breeding program.',
           },
           {
             title: 'Suitable for performance mares',
-            text: 'Aspiration is scheduled in a convenient window outside the competition season or between events. The procedure takes about 30–40 minutes under sedation, after which the mare can return to normal activity.',
+            text: 'Aspiration is scheduled between events or outside the competition season. The procedure takes 30–40 minutes under sedation; the mare can return to training afterward. For sport horse producers, this is a way to combine athletic careers with breeding work.',
           },
           {
             title: 'A solution for problem mares',
-            text: 'When conventional reproduction fails — chronic endometritis, age-related changes, reproductive tract injuries — direct oocyte collection from the ovary opens a path to continue the breeding line.',
+            text: 'When conventional reproduction fails — chronic endometritis, age-related changes, reproductive tract injuries, low fertilization rates — direct oocyte collection from the ovary opens a path to continue the line without giving up valuable genetics.',
           },
           {
             title: 'Flexible year-round planning',
-            text: 'Aspiration is performed when follicles of suitable size are present, without strict dependence on a single ovulation day. Repeat procedures are possible at 2–3 week intervals during the season.',
+            text: 'Aspiration is performed when follicles of suitable size are present, without strict dependence on a single ovulation day. Repeat procedures are possible at 2–3 week intervals. A breeding farm can distribute laboratory and recipient workload across the full season.',
           },
           {
             title: 'Cryopreservation and logistics',
-            text: 'Oocytes and embryos can be vitrified and stored in liquid nitrogen for transfer at a convenient time. This removes the need for tight synchronization between donor and recipient mares.',
+            text: 'Oocytes and embryos are vitrified and stored in liquid nitrogen for transfer at a convenient time — including another region or the next season. This removes the need for tight synchronization between donor and recipient mares and simplifies logistics for large breeding programs.',
           },
           {
             title: 'Washing quality determines the outcome',
-            text: 'After aspiration, oocytes are sensitive to medium composition, temperature and handling time. Proper washing in TSM-Asp preserves cell morphology and sets the success of the entire subsequent protocol — rinsing, freezing and thawing.',
+            text: 'After aspiration, oocytes are highly sensitive to medium composition, temperature and handling time. Proper washing in TSM-Asp preserves cell morphology and sets the success of the entire subsequent protocol — rinsing, vitrification and devitrification. Media for each stage must therefore work as a coordinated system.',
           },
         ],
         bridge:
-          'That is why every step after aspiration requires a specialized medium. Below is how the ZOOEMBRIO protocol is structured and which solutions we offer at each stage.',
+          'That is why every step after aspiration requires a specialized medium. Below is a detailed description of each stage of the ZOOEMBRIO protocol.',
+        homeBridge:
+          'The diagram shows the four protocol stages and ZOOEMBRIO media for each step. A detailed description of every stage is on the Technology page.',
       },
       solutionsIntro:
-        'The ZOOEMBRIO product line covers the full cycle: washing, rinsing, vitrification and thawing. For each stage — a detailed process description and the recommended medium.',
+        'The ZOOEMBRIO product line covers the full cycle: washing, rinsing, vitrification and devitrification. For each stage — a detailed process description and the recommended medium.',
       stageLabel: 'Stage',
       whatIsLabel: 'What it is',
       steps: [
@@ -673,7 +693,7 @@ const content: Record<Locale, SiteContent> = {
           text: 'The two-component ViT1 and ViT2 kit is used for vitrification of equine embryos and oocytes.',
           product: 'ViT1 / ViT2',
           whatIs:
-            'Vitrification is ultra-rapid freezing in which the cell enters a glass-like state without ice crystal formation. This allows equine oocytes and embryos to be stored long-term in liquid nitrogen (−196 °C) with high survival after thawing.',
+            'Vitrification is ultra-rapid freezing in which the cell enters a glass-like state without ice crystal formation. This allows equine oocytes and embryos to be stored long-term in liquid nitrogen (−196 °C) with high survival after devitrification.',
           howTitle: 'How the stage is performed',
           howSteps: [
             'Oocytes are equilibrated in ViT1 medium — it prepares the cell for cryoprotectant exposure.',
@@ -684,27 +704,27 @@ const content: Record<Locale, SiteContent> = {
           ],
           mediumNote:
             'The ViT1 + ViT2 kit is a two-step system: first medium for equilibration, second for final vitrification.',
-          image: '/images/technology/step-3-vitrification.svg',
-          imageAlt: 'Diagram of oocyte vitrification with ViT1 and ViT2 kits',
+          image: '/images/products/vit.jpg',
+          imageAlt: 'ViT1 and ViT2 media kit for embryo and oocyte vitrification',
         },
         {
-          title: 'Thawing',
-          text: 'The WaM1 and WaM2 kit is applied for stepwise recovery of vitrified cells before transfer or further handling.',
-          product: 'WaM1 / WaM2',
+          title: 'Devitrification',
+          text: 'The WaM1, WaM2 and WaM3 kit is applied for stepwise recovery of vitrified cells before transfer or further handling.',
+          product: 'WaM1 / WaM2 / WaM3',
           whatIs:
-            'Thawing is the reverse of vitrification. The frozen oocyte is removed from liquid nitrogen, rapidly warmed and stepwise recovered from cryoprotectants into working medium. The goal is to restore cell viability for culture, fertilization or transfer.',
+            'Devitrification is the reverse of vitrification. The frozen oocyte is removed from liquid nitrogen, rapidly warmed and stepwise recovered from cryoprotectants into working medium. The goal is to restore cell viability for culture, fertilization or transfer.',
           howTitle: 'How the stage is performed',
           howSteps: [
             'The cryotop is removed from liquid nitrogen and immediately immersed in a 37 °C water bath for several seconds.',
             'The oocyte is transferred to WaM1 medium — it begins cryoprotectant removal.',
-            'Sequential transfers through WaM1 and WaM2 portions with controlled exposure times.',
-            'After thawing, oocyte morphology and suitability for further use are assessed.',
+            'Sequential transfers through WaM1, WaM2 and WaM3 portions with controlled exposure times.',
+            'After devitrification, oocyte morphology and suitability for further use are assessed.',
             'Recovered oocytes are used in fertilization or culture programs.',
           ],
           mediumNote:
-            'The WaM1 + WaM2 kit provides a smooth transition of the cell from vitrified state to working medium without osmotic shock.',
-          image: '/images/technology/step-4-thawing.svg',
-          imageAlt: 'Diagram of oocyte thawing in a water bath with WaM1 and WaM2 media',
+            'The WaM1 + WaM2 + WaM3 kit provides a smooth transition of the cell from vitrified state to working medium without osmotic shock.',
+          image: '/images/products/wam.jpg',
+          imageAlt: 'WaM1 and WaM2 media kit for embryo and oocyte devitrification',
         },
       ],
       note:
@@ -743,11 +763,11 @@ const content: Record<Locale, SiteContent> = {
         },
         {
           id: 'wam',
-          name: 'WaM1 / WaM2',
+          name: 'WaM1 / WaM2 / WaM3',
           color: 'magenta',
-          packaging: 'Two-component kit',
-          description: 'Media kit for thawing vitrified embryos and oocytes.',
-          volumes: ['WaM1 + WaM2 kit'],
+          packaging: 'Three-component kit',
+          description: 'Media kit for devitrification of vitrified embryos and oocytes.',
+          volumes: ['WaM1 + WaM2 + WaM3 kit'],
           step: 4,
         },
       ],
@@ -759,6 +779,7 @@ const content: Record<Locale, SiteContent> = {
       sterile: {
         title: 'Sterile manufacturing',
         text: 'ZOOEMBRIO media are produced under controlled sterile conditions. Facilities and processes are organized to the highest standards of cleanliness, traceability and reproducibility — from raw material intake to finished batch release.',
+        image: '/images/production/facility.jpg',
         imageAlt: 'Production laboratory photo',
         isoLabel: 'ISO certification',
         isoText:
@@ -767,11 +788,11 @@ const content: Record<Locale, SiteContent> = {
       },
       formulation: {
         title: 'Proprietary formulations and validation',
-        text: 'At the ZOOEMBRIO laboratory we developed every formulation in our line from scratch — TSM-Asp, Wash, ViT1/ViT2 and WaM1/WaM2. Each recipe targets a specific stage of the equine in vivo fertilization protocol and completed full validation: laboratory and applied testing, MEA embryo toxicity assays and bacterial endotoxin control. Media entered serial production only after safety and performance were confirmed.',
+        text: 'At the ZOOEMBRIO laboratory we developed every formulation in our line from scratch — TSM-Asp, Wash, ViT1/ViT2 and WaM1/WaM2/WaM3. Each recipe targets a specific stage of the equine in vivo fertilization protocol and completed full validation: laboratory and applied testing, MEA embryo toxicity assays and bacterial endotoxin control. Media entered serial production only after safety and performance were confirmed.',
         items: [
           {
             title: 'Formulation development',
-            text: 'TSM-Asp, Wash, ViT1/ViT2 and WaM1/WaM2 compositions are developed and optimized in the ZOOEMBRIO laboratory for equine oocyte and embryo work.',
+            text: 'TSM-Asp, Wash, ViT1/ViT2 and WaM1/WaM2/WaM3 compositions are developed and optimized in the ZOOEMBRIO laboratory for equine oocyte and embryo work.',
           },
           {
             title: 'Successful testing',
@@ -833,7 +854,7 @@ const content: Record<Locale, SiteContent> = {
         {
           name: 'Partner 1',
           role: 'Reproductive laboratory',
-          text: 'Uses the full ZOOEMBRIO media cycle — from TSM-Asp washing to WaM1/WaM2 thawing.',
+          text: 'Uses the full ZOOEMBRIO media cycle — from TSM-Asp washing to WaM1/WaM2/WaM3 devitrification.',
           imageAlt: 'Partner photo',
         },
         {
@@ -845,7 +866,7 @@ const content: Record<Locale, SiteContent> = {
         {
           name: 'Partner 3',
           role: 'ART laboratory',
-          text: 'Applies Wash, ViT1/ViT2 and WaM1/WaM2 in daily laboratory practice.',
+          text: 'Applies Wash, ViT1/ViT2 and WaM1/WaM2/WaM3 in daily laboratory practice.',
           imageAlt: 'Partner photo',
         },
       ],
@@ -856,7 +877,7 @@ const content: Record<Locale, SiteContent> = {
       items: [
         {
           quote:
-            'Consistent composition and predictable performance at every protocol stage — from aspiration to thawing. Packaging formats fit our workflow.',
+            'Consistent composition and predictable performance at every protocol stage — from aspiration to devitrification. Packaging formats fit our workflow.',
           author: 'Reproduction specialist',
           role: 'Reproductive laboratory',
         },
@@ -877,6 +898,7 @@ const content: Record<Locale, SiteContent> = {
     homeProduction: {
       title: 'Our production',
       text: 'ZOOEMBRIO manufactures ART media under sterile conditions at our own facility. ISO-certified production — we control formulation, preparation and filling from raw materials to finished batch.',
+      image: '/images/production/facility.jpg',
       imageAlt: 'Production photo',
       cta: 'Learn more about production',
       highlights: [

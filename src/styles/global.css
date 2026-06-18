@@ -249,6 +249,14 @@
     @apply overflow-hidden rounded-2xl border border-brand-navy/10 bg-white shadow-card;
   }
 
+  .tech-cycle {
+    @apply overflow-hidden rounded-2xl border border-brand-navy/10 bg-white shadow-card;
+  }
+
+  .tech-cycle__img {
+    @apply h-auto w-full;
+  }
+
   .tech-advantages__img {
     @apply h-auto w-full;
   }
@@ -287,7 +295,7 @@
   }
 
   .tech-detail__img {
-    @apply h-auto w-full;
+    @apply mx-auto h-auto max-h-[28rem] w-full object-contain;
   }
 
   .tech-detail__caption {
