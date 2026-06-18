@@ -59,7 +59,6 @@ public/images/logo/art-logo.png
 **Подробная пошаговая инструкция на русском:** `КАК-ВЫЛОЖИТЬ-С-HTTPS.txt`
 
 Сайт настроен на адрес **https://zooembrio.ru**. После деплоя:
-- HTTP автоматически перенаправляется на HTTPS (`public/_redirects`)
 - Включены заголовки безопасности (`public/_headers`) — HSTS, защита от подмены контента
 - Форма работает через **https://formsubmit.co**
 
@@ -69,7 +68,8 @@ public/images/logo/art-logo.png
 2. Загрузите проект в репозиторий GitHub
 3. Cloudflare → **Workers & Pages → Create → Connect to Git**
 4. Build command: `npm run build` · Output directory: `dist`
-5. Привяжите домен `zooembrio.ru` (Custom domains)
+5. Deploy command: **оставить пустым** (не `wrangler versions upload`)
+6. Привяжите домен `zooembrio.ru` (Custom domains)
 6. У регистратора домена укажите DNS-серверы Cloudflare
 7. Cloudflare → **SSL/TLS → Always Use HTTPS: ON**
 

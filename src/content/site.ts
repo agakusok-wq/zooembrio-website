@@ -200,7 +200,7 @@ const content: Record<Locale, SiteContent> = {
       title: 'Технология in vivo оплодотворения лошадей',
       subtitle:
         'Протокол ZOOEMBRIO выстроен вокруг четырёх последовательных этапов. Каждая среда решает конкретную задачу и используется в строго определённой точке процесса.',
-      cycleImage: '/images/technology/technology-cycle.png',
+      cycleImage: '/images/technology/technology-cycle.jpg',
       cycleImageAlt:
         'Схема полного цикла in vivo протокола: вымывание в TSM-Asp, отмывка Wash, витрификация ViT1/ViT2 и девитрификация WaM1/WaM2/WaM3',
       advantages: {
@@ -603,7 +603,7 @@ const content: Record<Locale, SiteContent> = {
       title: 'Equine in vivo fertilization technology',
       subtitle:
         'The ZOOEMBRIO protocol is built around four sequential stages. Each medium addresses a specific task at a defined point in the process.',
-      cycleImage: '/images/technology/technology-cycle.png',
+      cycleImage: '/images/technology/technology-cycle.jpg',
       cycleImageAlt:
         'Diagram of the full in vivo protocol cycle: washing in TSM-Asp, rinsing in Wash, vitrification with ViT1/ViT2 and devitrification with WaM1/WaM2/WaM3',
       advantages: {

@@ -47,10 +47,20 @@ echo   3. Выберите репозиторий zooembrio-website
 echo   4. Настройки сборки:
 echo        Build command:    npm run build
 echo        Build output:     dist
-echo        Deploy command:   ОСТАВИТЬ ПУСТЫМ (удалить wrangler versions upload!)
+echo        Deploy command:   ОСТАВИТЬ ПУСТЫМ!
+echo        (НЕ используйте: npx wrangler versions upload)
 echo        Production branch: main
 echo        Node version:     20
 echo   5. Save and Deploy
+echo.
+echo   ВАЖНО — если сайт не открывается или нет картинок:
+echo   - Cloudflare -^> проект -^> Settings -^> Builds
+echo   - Удалите Deploy command (должно быть пусто)
+echo   - Retry deployment
+echo.
+echo   Для домена zooembrio.ru:
+echo   - Custom domains -^> добавить zooembrio.ru
+echo   - В Reg.ru сменить DNS-серверы на Cloudflare (ns*.cloudflare.com)
 echo.
 echo После деплоя сайт будет доступен по адресу:
 echo   https://zooembrio-website.pages.dev
