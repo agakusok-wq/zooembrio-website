@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 90" fill="none" aria-hidden="true">
+  <path d="M40 8c-6 10-18 18-28 22 8 2 14 8 18 16-2-10 2-18 10-24 8 6 12 14 10 24 4-8 10-14 18-16-10-4-22-12-28-22z" stroke="#F2552C" stroke-width="3.2" stroke-linejoin="round"/>
+  <path d="M22 48c4 10 10 18 18 26 8-8 14-16 18-26" stroke="#F2552C" stroke-width="3.2" stroke-linecap="round"/>
+  <circle cx="32" cy="42" r="2.2" fill="#F2552C"/>
+  <circle cx="48" cy="42" r="2.2" fill="#F2552C"/>
+  <text x="40" y="84" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff">BF</text>
+</svg>
