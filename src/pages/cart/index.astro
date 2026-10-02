@@ -1,0 +1,42 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+<BaseLayout>
+  <section class="section-container py-16">
+    <h1 class="section-title">Корзина</h1>
+    <p class="mt-3 max-w-2xl text-brand-navy/70">B2B-заказ. После отправки менеджер выставит счёт вручную по реквизитам ИП. Авто-PDF — следующий этап.</p>
+    <div id="cart-lines" class="mt-8 space-y-3"></div>
+    <p class="mt-6 text-right text-xl font-semibold">Итого: <span id="cart-total">0 ₽</span></p>
+    <form class="mt-10 grid max-w-xl gap-3 rounded-2xl bg-white p-6 shadow-card" action="https://formsubmit.co/bmvz-8@yandex.ru" method="POST" id="order-form">
+      <input type="hidden" name="_subject" value="Заказ ZOOEMBRIO (счёт вручную)" />
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="source" value="zooembrio.ru/cart" />
+      <input type="hidden" name="order_json" id="order_json" />
+      <input type="hidden" name="order_text" id="order_text" />
+      <input class="rounded-lg border px-3 py-2" name="name" placeholder="ФИО" required />
+      <input class="rounded-lg border px-3 py-2" name="company" placeholder="Компания" required />
+      <input class="rounded-lg border px-3 py-2" type="email" name="email" placeholder="Email" required />
+      <input class="rounded-lg border px-3 py-2" name="phone" placeholder="Телефон" required />
+      <textarea class="rounded-lg border px-3 py-2" name="message" rows="3" placeholder="Комментарий"></textarea>
+      <button class="btn-primary" type="submit">Отправить заявку на счёт</button>
+    </form>
+  </section>
+  <script is:inline>
+    function rub(n){return new Intl.NumberFormat("ru-RU",{style:"currency",currency:"RUB",maximumFractionDigits:0}).format(n)}
+    function render(){
+      const items=window.ZooCart?.read()||[];
+      const root=document.getElementById("cart-lines");
+      if(!items.length){root.innerHTML='<p class="text-brand-navy/60">Корзина пуста. <a class="underline" href="/products">К продукции</a></p>';document.getElementById("cart-total").textContent=rub(0);return}
+      root.innerHTML=items.map(i=>`<div class="flex flex-wrap items-center justify-between gap-3 rounded-xl border bg-white p-4"><div><p class="font-medium">${i.name}</p><p class="text-sm opacity-60">${i.packaging||""}</p></div><div class="flex items-center gap-2"><input type="number" min="1" value="${i.qty}" data-qty="${i.id}" class="w-16 rounded border px-2 py-1"/><button type="button" data-remove="${i.id}" class="text-sm underline">Удалить</button></div></div>`).join("");
+      const total=items.reduce((s,i)=>s+(i.price||0)*i.qty,0);
+      document.getElementById("cart-total").textContent=rub(total);
+      document.getElementById("order_json").value=JSON.stringify(items);
+      document.getElementById("order_text").value=items.map(i=>`${i.name} x${i.qty}`).join("\n");
+      root.querySelectorAll("[data-qty]").forEach(inp=>inp.addEventListener("change",e=>window.ZooCart.setQty(e.target.getAttribute("data-qty"),Number(e.target.value||1))));
+      root.querySelectorAll("[data-remove]").forEach(btn=>btn.addEventListener("click",e=>window.ZooCart.remove(e.target.getAttribute("data-remove"))));
+    }
+    window.addEventListener("cart:updated",render);
+    document.addEventListener("DOMContentLoaded",()=>setTimeout(render,0));
+    document.getElementById("order-form")?.addEventListener("submit",()=>setTimeout(()=>window.ZooCart.clear(),400));
+  </script>
+</BaseLayout>

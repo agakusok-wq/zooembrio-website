@@ -34,6 +34,7 @@ const switchHref = switchLocalePath(Astro.url.pathname, otherLocale);
     </nav>
 
     <div class="flex items-center gap-3">
+      <a href="/cart/" class="rounded-full border-2 border-brand-navy/10 px-3 py-1 text-xs font-bold text-brand-navy">Корзина (<span data-cart-count>0</span>)</a>
       <a
         href={switchHref}
         class="rounded-full border-2 border-brand-navy/10 px-3 py-1 text-xs font-bold text-brand-navy transition hover:border-spot-sky hover:text-spot-coral"

@@ -74,6 +74,13 @@ const imageMap: Record<string, string> = {
                     </span>
                   ))}
                 </div>
+                <button
+                  type="button"
+                  class="btn-outline mt-5 text-sm"
+                  data-add-to-cart={JSON.stringify({ id: group.id, name: group.name, packaging: group.packaging, price: 0 })}
+                >
+                  {locale === 'ru' ? 'В корзину' : 'Add to cart'}
+                </button>
               </div>
             </div>
           </article>
