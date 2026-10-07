@@ -1,0 +1,40 @@
+---
+import type { SiteContent } from '../content/site';
+import type { Locale } from '../i18n';
+import { localizedPath } from '../i18n';
+import SpotDots from './SpotDots.astro';
+import SpotCardBlob from './SpotCardBlob.astro';
+
+interface Props {
+  content: SiteContent;
+  locale: Locale;
+}
+
+const { content, locale } = Astro.props;
+const colors = ['#e8482a', '#2ab0b3'];
+---
+
+<section class="border-t border-brand-navy/5 bg-brand-cream/50 py-20">
+  <div class="section-container">
+    <SpotDots class="mb-4 justify-center" />
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="section-title">{content.species.title}</h2>
+      <p class="mt-4 text-brand-navy/70">{content.species.subtitle}</p>
+    </div>
+    <div class="mx-auto mt-12 grid max-w-4xl gap-6 md:grid-cols-2">
+      {
+        content.species.items.map((item, i) => (
+          <a href={localizedPath(item.href, locale)} class="spot-card group block transition hover:-translate-y-0.5">
+            <SpotCardBlob color={colors[i % colors.length]} />
+            <span class="spot-badge-amber relative z-10">{item.badge}</span>
+            <h3 class="relative z-10 mt-4 font-display text-xl font-bold text-brand-navy group-hover:text-spot-coral">
+              {item.title}
+            </h3>
+            <p class="relative z-10 mt-2 text-sm leading-relaxed text-brand-navy/75">{item.text}</p>
+            <span class="relative z-10 mt-4 inline-block text-sm font-bold text-spot-coral">{item.cta} →</span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

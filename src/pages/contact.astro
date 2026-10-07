@@ -4,12 +4,18 @@ import PageBanner from '../components/PageBanner.astro';
 import ContactSection from '../components/ContactSection.astro';
 import { getContent } from '../content/site';
 import { getLocaleFromUrl } from '../i18n';
+import { breadcrumbJsonLd, getPageSeo } from '../data/seo';
 
 const locale = getLocaleFromUrl(Astro.url);
 const content = getContent(locale);
+const seo = getPageSeo('contact', locale);
+const jsonLd = breadcrumbJsonLd([
+  { name: 'ZOOEMBRIO', path: locale === 'ru' ? '/' : '/en/' },
+  { name: content.contact.title, path: locale === 'ru' ? '/contact/' : '/en/contact/' },
+]);
 ---
 
-<BaseLayout>
+<BaseLayout title={seo.title} description={seo.description} jsonLd={jsonLd}>
   <PageBanner title={content.contact.title} subtitle={content.contact.subtitle} palette="contact" />
   <ContactSection content={content} />
 </BaseLayout>

@@ -1,28 +1,121 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getContent } from '../content/site';
-import { getLocaleFromUrl } from '../i18n';
+import PageBanner from '../components/PageBanner.astro';
+import SpotDots from '../components/SpotDots.astro';
+import SpotCardBlob from '../components/SpotCardBlob.astro';
+import FaqSection from '../components/FaqSection.astro';
+import { getLocaleFromUrl, localizedPath } from '../i18n';
+import { breadcrumbJsonLd, faqJsonLd, getPageSeo } from '../data/seo';
 
 const locale = getLocaleFromUrl(Astro.url);
-const content = getContent(locale);
-const title = locale === 'ru' ? 'Среды для КРС' : 'Cattle media';
+const isRu = locale === 'ru';
+const seo = getPageSeo('cattle', locale);
+
+const title = isRu ? 'Среды АРТ для крупного рогатого скота' : 'ART media for cattle';
+const subtitle = isRu
+  ? 'Запускаем линейку для КРС на том же стандарте, что и для лошадей: локальное производство, протоколы и документы партий.'
+  : 'Launching a bovine line under the same standard as equine: local manufacturing, protocols and lot documentation.';
+
+const pillars = isRu
+  ? [
+      {
+        title: 'Тот же стандарт QC',
+        text: 'Стерильный выпуск, контроль партий, MEA и эндотоксины — единый подход ZOOEMBRIO для лошадей и КРС.',
+        color: '#2ab0b3',
+      },
+      {
+        title: 'Логика этапов',
+        text: 'Среды под работу с ооцитами и эмбрионами: вымывание / обработка, отмывка, витрификация и девитрификация — под ваш лабораторный регламент.',
+        color: '#e8482a',
+      },
+      {
+        title: 'Поставки по РФ',
+        text: 'Без ожидания импортного контейнера: согласование объёма, паспорт партии и предсказуемый срок отгрузки.',
+        color: '#7ec8e3',
+      },
+    ]
+  : [
+      {
+        title: 'Same QC standard',
+        text: 'Sterile manufacturing, lot release, MEA and endotoxins — one ZOOEMBRIO approach for horses and cattle.',
+        color: '#2ab0b3',
+      },
+      {
+        title: 'Stage logic',
+        text: 'Media for oocyte and embryo work: handling/washing, rinsing, vitrification and warming — fitted to your lab SOP.',
+        color: '#e8482a',
+      },
+      {
+        title: 'Supply in Russia',
+        text: 'No waiting on an import container: volume alignment, lot certificate and predictable ship date.',
+        color: '#7ec8e3',
+      },
+    ];
+
+const jsonLd = [
+  breadcrumbJsonLd([
+    { name: 'ZOOEMBRIO', path: locale === 'ru' ? '/' : '/en/' },
+    { name: title, path: locale === 'ru' ? '/cattle/' : '/en/cattle/' },
+  ]),
+  ...(seo.faqs ? [faqJsonLd(seo.faqs)] : []),
+];
 ---
 
-<BaseLayout>
-  <section class="section-container py-32 text-center">
-    <span class="rounded-full bg-brand-navy/10 px-4 py-1 text-sm font-semibold text-brand-navy">
-      {locale === 'ru' ? 'Скоро' : 'Coming soon'}
-    </span>
-    <h1 class="section-title mt-6">{title}</h1>
-    <p class="mx-auto mt-4 max-w-xl text-brand-navy/70">
-      {
-        locale === 'ru'
-          ? 'Раздел в разработке. Следите за обновлениями на главной странице.'
-          : 'This section is under development. Check the homepage for updates.'
-      }
-    </p>
-    <a href={locale === 'ru' ? '/' : '/en'} class="btn-primary mt-8 inline-flex">
-      {locale === 'ru' ? 'На главную' : 'Back to home'}
-    </a>
+<BaseLayout title={seo.title} description={seo.description} jsonLd={jsonLd}>
+  <PageBanner title={title} subtitle={subtitle} palette="products" />
+
+  <section class="py-16">
+    <div class="section-container">
+      <SpotDots class="mb-4" />
+      <p class="max-w-3xl text-base leading-relaxed text-brand-navy/80">
+        {
+          isRu
+            ? 'ZOOEMBRIO — российский производитель сред АРТ. Equine-линейка (TSM-Asp, Wash, ViT, WaM) уже в серийном выпуске. Направление для крупного рогатого скота открываем для лабораторий и хозяйств, которым нужна локальная альтернатива импортным наборам с понятным протоколом и документами.'
+            : 'ZOOEMBRIO is a Russian ART media manufacturer. The equine line (TSM-Asp, Wash, ViT, WaM) is already in serial production. We are opening the cattle direction for labs that need a local alternative to imported kits — with a clear protocol and paperwork.'
+        }
+      </p>
+
+      <div class="mt-12 grid gap-6 md:grid-cols-3">
+        {
+          pillars.map((item) => (
+            <div class="spot-card">
+              <SpotCardBlob color={item.color} />
+              <h2 class="relative z-10 font-display text-lg font-bold text-brand-navy">{item.title}</h2>
+              <p class="relative z-10 mt-2 text-sm leading-relaxed text-brand-navy/75">{item.text}</p>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="mt-14 rounded-3xl border-2 border-brand-navy/10 bg-brand-cream/60 p-8 md:p-10">
+        <h2 class="font-display text-2xl font-extrabold text-brand-navy">
+          {isRu ? 'Ранний доступ к линейке КРС' : 'Early access to the cattle line'}
+        </h2>
+        <p class="mt-3 max-w-2xl text-sm leading-relaxed text-brand-navy/75">
+          {
+            isRu
+              ? 'Оставьте заявку — уточним ваш протокол (OPU / ЭКО / витрификация), предложим стартовый комплект и пришлём документы. Лошади при этом остаются полноценным действующим направлением.'
+              : 'Send a request — we will clarify your protocol (OPU / IVF / vitrification), propose a starter set and share documentation. Equine remains a full active line in parallel.'
+          }
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href={localizedPath('/contact', locale)} class="btn-primary">
+            {isRu ? 'Запросить предложение по КРС' : 'Request cattle offer'}
+          </a>
+          <a href={localizedPath('/news/cattle-art-media-launch', locale)} class="btn-outline">
+            {isRu ? 'Читать новость о запуске' : 'Read the launch news'}
+          </a>
+          <a href={localizedPath('/products', locale)} class="btn-outline">
+            {isRu ? 'Продукция для лошадей' : 'Equine products'}
+          </a>
+        </div>
+      </div>
+    </div>
   </section>
+
+  {
+    seo.faqs && (
+      <FaqSection title={isRu ? 'Вопросы о средах для КРС' : 'Cattle media FAQ'} items={seo.faqs} />
+    )
+  }
 </BaseLayout>

@@ -1,2 +1,2 @@
-@echo off
-start http://localhost:4321/
+﻿@echo off
+start http://127.0.0.1:4321/

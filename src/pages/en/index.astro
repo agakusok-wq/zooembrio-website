@@ -6,17 +6,25 @@ import ProductGrid from '../../components/ProductGrid.astro';
 import PartnersSection from '../../components/PartnersSection.astro';
 import ReviewsSection from '../../components/ReviewsSection.astro';
 import HomeProductionSection from '../../components/HomeProductionSection.astro';
+import SpeciesSection from '../../components/SpeciesSection.astro';
+import FaqSection from '../../components/FaqSection.astro';
 import CowSpots from '../../components/CowSpots.astro';
 import SpotCardBlob from '../../components/SpotCardBlob.astro';
 import { getContent } from '../../content/site';
 import { localizedPath } from '../../i18n';
+import { breadcrumbJsonLd, faqJsonLd, getPageSeo } from '../../data/seo';
 
 const locale = 'en' as const;
 const content = getContent(locale);
+const seo = getPageSeo('home', locale);
 const trustColors = ['#7ec8e3', '#2ab0b3', '#f09020'];
+const jsonLd = [
+  breadcrumbJsonLd([{ name: 'ZOOEMBRIO', path: '/en/' }]),
+  ...(seo.faqs ? [faqJsonLd(seo.faqs)] : []),
+];
 ---
 
-<BaseLayout>
+<BaseLayout title={seo.title} description={seo.description} jsonLd={jsonLd}>
   <HeroSection locale={locale} content={content} />
 
   <section class="relative overflow-hidden py-16">
@@ -37,11 +45,13 @@ const trustColors = ['#7ec8e3', '#2ab0b3', '#f09020'];
     </div>
   </section>
 
+  <SpeciesSection content={content} locale={locale} />
   <TechnologySteps content={content} locale={locale} />
   <ProductGrid locale={locale} content={content} />
   <PartnersSection content={content} />
   <ReviewsSection content={content} />
   <HomeProductionSection locale={locale} content={content} />
+  {seo.faqs && <FaqSection title="FAQ" items={seo.faqs} />}
 
   <section class="cta-spot">
     <CowSpots variant="footer" />

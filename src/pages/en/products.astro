@@ -2,13 +2,25 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageBanner from '../../components/PageBanner.astro';
 import ProductGrid from '../../components/ProductGrid.astro';
+import FaqSection from '../../components/FaqSection.astro';
 import { getContent } from '../../content/site';
+import { breadcrumbJsonLd, faqJsonLd, getPageSeo, productListJsonLd } from '../../data/seo';
 
 const locale = 'en' as const;
 const content = getContent(locale);
+const seo = getPageSeo('products', locale);
+const jsonLd = [
+  breadcrumbJsonLd([
+    { name: 'ZOOEMBRIO', path: '/en/' },
+    { name: content.products.title, path: '/en/products/' },
+  ]),
+  productListJsonLd(content.products.groups, locale),
+  ...(seo.faqs ? [faqJsonLd(seo.faqs)] : []),
+];
 ---
 
-<BaseLayout>
+<BaseLayout title={seo.title} description={seo.description} jsonLd={jsonLd}>
   <PageBanner title={content.products.title} subtitle={content.products.subtitle} palette="products" />
   <ProductGrid locale={locale} content={content} />
+  {seo.faqs && <FaqSection title="Products FAQ" items={seo.faqs} />}
 </BaseLayout>

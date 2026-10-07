@@ -1,0 +1,20 @@
+---
+description: Fixed local ports for all five sites — never collide on 4321
+alwaysApply: true
+---
+
+# Dev ports (multi-site hub)
+
+When working under `Сайты` or any of the five site repos, use these ports only:
+
+- zooembrio-website → **4321**
+- wtarus-website → **4322**
+- opulab-website → **4323**
+- sredy-zhizni-website → **4324**
+- kpt-research-site → **4325**
+
+Rules:
+1. Prefer `npm run dev` / `npm run preview` from that site's `package.json` (includes `--strictPort`).
+2. Never start WTARUS/Opulab/Среды жизни/КПТ on port 4321.
+3. If you change a port, update `ports.json`, `LOCAL-PORTS.md`, `AGENTS.md`, this rule, and that site's `package.json` together.
+4. Source of truth: `Сайты/ports.json` (and `_shared/ports.json`).

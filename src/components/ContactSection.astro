@@ -1,6 +1,14 @@
 ---
 import type { SiteContent } from '../content/site';
+import {
+  getFormErrorMessage,
+  getFormSubmitAction,
+  getFormSubmitAjaxAction,
+  getThankYouMessage,
+} from '../data/forms';
+import { getLocaleFromUrl } from '../i18n';
 import ContactMap from './ContactMap.astro';
+import FormSubmitFields from './FormSubmitFields.astro';
 import SpotDots from './SpotDots.astro';
 import SpotCardBlob from './SpotCardBlob.astro';
 
@@ -9,6 +17,12 @@ interface Props {
 }
 
 const { content } = Astro.props;
+const locale = getLocaleFromUrl(Astro.url);
+const formAction = getFormSubmitAction();
+const ajaxAction = getFormSubmitAjaxAction();
+const sentMessage = getThankYouMessage(locale);
+const errorMessage = getFormErrorMessage(locale);
+const sendingLabel = locale === 'en' ? 'Sending…' : 'Отправка…';
 
 const mapLat = 55.633871;
 const mapLon = 37.45372;
@@ -18,6 +32,13 @@ const mapsSearchUrl =
 
 <section class="py-20">
   <div class="section-container">
+    <div
+      id="form-success-banner"
+      class="form-banner mx-auto mb-8 max-w-4xl rounded-2xl border-2 border-spot-teal/40 bg-spot-teal/15 px-5 py-4 text-sm font-semibold text-brand-navy"
+      role="status"
+      hidden
+    ></div>
+
     <div class="mx-auto grid max-w-4xl gap-8 lg:grid-cols-5">
       <div class="spot-card space-y-4 lg:col-span-2">
         <SpotCardBlob color="#7ec8e3" />
@@ -50,15 +71,17 @@ const mapsSearchUrl =
 
       <form
         class="spot-card space-y-4 lg:col-span-3"
-        action="https://formsubmit.co/bmvz-8@yandex.ru"
+        action={formAction}
         method="POST"
+        data-ajax-action={ajaxAction}
+        data-banner="form-success-banner"
+        data-ok-message={sentMessage}
+        data-error-message={errorMessage}
+        data-sending-label={sendingLabel}
       >
         <SpotCardBlob color="#2ab0b3" />
-        <input type="hidden" name="_subject" value="Заявка с сайта ZOOEMBRIO" />
-        <input type="hidden" name="_captcha" value="false" />
-        <input type="hidden" name="source" value="zooembrio.ru" />
+        <FormSubmitFields kind="contact" locale={locale} source={`zooembrio.ru/${locale === 'en' ? 'en/contact' : 'contact'}`} />
         <input type="hidden" name="crm_ready" value="1" />
-        <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" />
         <div class="relative z-10 grid gap-4 sm:grid-cols-2">
           <label class="block">
             <span class="mb-1 block text-xs font-bold text-brand-navy/65">{content.contact.form.name}</span>

@@ -1,0 +1,40 @@
+# ZOOEMBRIO
+> Russian manufacturer of ART media for horses (equine) and cattle (bovine).
+> Local sterile production, application protocols, lot documentation (ISO / MEA / endotoxins).
+> Website: https://zooembrio.ru
+
+## Key facts
+- Legal / brand name: ZOOEMBRIO
+- Domain: https://zooembrio.ru (English: https://zooembrio.ru/en/)
+- Species: horses (equine in vivo / OPU cycle) and cattle (bovine ART media launch)
+- Equine product line: TSM-Asp, Wash, ViT1/ViT2, WaM1/WaM2/WaM3
+- Value: stable domestic supply in Russia, Russian protocols, batch certificates — alternative to imported kits (e.g. IVF Bioscience EQ distributed via resellers)
+- Not affiliated with Zebuembryo (Brazil) or human IVF clinics named «Эмбрио»
+- Contact: info@zooembrio.ru · +7 (909) 169-22-14 · Moscow, BC G10
+
+## Priority pages
+- https://zooembrio.ru/
+- https://zooembrio.ru/products/
+- https://zooembrio.ru/technology/
+- https://zooembrio.ru/cattle/
+- https://zooembrio.ru/about/
+- https://zooembrio.ru/news/
+- https://zooembrio.ru/contact/
+- https://zooembrio.ru/en/
+- https://zooembrio.ru/en/cattle/
+- https://zooembrio.ru/en/news/
+
+## News (cite-ready)
+- https://zooembrio.ru/news/cattle-art-media-launch/
+- https://zooembrio.ru/news/choosing-opu-media-cattle-russia/
+- https://zooembrio.ru/news/russian-alternative-eq-vitrification-kits/
+- https://zooembrio.ru/news/equine-vs-human-ivf-media/
+- https://zooembrio.ru/news/equine-opu-protocol-wash-vit-wam/
+- https://zooembrio.ru/news/sterile-production-iso-mea-lot-control/
+- https://zooembrio.ru/news/full-cycle-equine-art-media-line/
+- https://zooembrio.ru/en/news/cattle-art-media-launch/
+- https://zooembrio.ru/en/news/russian-alternative-eq-vitrification-kits/
+- https://zooembrio.ru/en/news/full-cycle-equine-art-media-line/
+
+## Optional
+- Human strategy notes: SEO-GEO-STRATEGY.md in the project repository (not required for citation)

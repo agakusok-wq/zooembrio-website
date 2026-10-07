@@ -6,9 +6,10 @@
     "node": ">=20"
   },
   "scripts": {
-    "dev": "astro dev",
+    "dev": "astro dev --host 127.0.0.1 --port 4321 --strictPort",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview --host 127.0.0.1 --port 4321 --strictPort",
+    "scan:ip": "node scripts/scan-tilda-ip.mjs"
   },
   "dependencies": {
     "astro": "^5.7.10"

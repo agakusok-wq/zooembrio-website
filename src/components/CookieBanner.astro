@@ -1,0 +1,65 @@
+---
+import type { Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const copy =
+  locale === 'ru'
+    ? {
+        text: 'Мы используем cookie и аналогичные технологии, чтобы сайт работал корректно и чтобы улучшать его. Продолжая пользоваться сайтом, вы соглашаетесь с этим.',
+        link: 'Политика конфиденциальности',
+        href: '/privacy/',
+        accept: 'Принять',
+      }
+    : {
+        text: 'We use cookies and similar technologies to keep the site working and improve it. By continuing, you agree to this.',
+        link: 'Privacy policy',
+        href: '/en/privacy/',
+        accept: 'Accept',
+      };
+---
+
+<div
+  id="cookie-banner"
+  class="fixed inset-x-0 bottom-0 z-[60] hidden border-t border-brand-navy/10 bg-white/95 p-4 shadow-[0_-12px_40px_rgba(26,43,74,0.12)] backdrop-blur"
+  role="dialog"
+  aria-live="polite"
+  aria-label={locale === 'ru' ? 'Согласие на cookie' : 'Cookie consent'}
+>
+  <div class="section-container flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+    <p class="max-w-3xl text-sm leading-relaxed text-brand-navy/80">
+      {copy.text}
+      {' '}
+      <a href={copy.href} class="font-semibold text-spot-coral underline underline-offset-2">{copy.link}</a>
+    </p>
+    <button
+      id="cookie-accept"
+      type="button"
+      class="btn-primary shrink-0 px-6 py-2.5 text-sm"
+    >
+      {copy.accept}
+    </button>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    var key = 'zooembrio_cookie_consent_v1';
+    var banner = document.getElementById('cookie-banner');
+    var button = document.getElementById('cookie-accept');
+    if (!banner || !button) return;
+    try {
+      if (localStorage.getItem(key) === '1') return;
+    } catch (e) {}
+    banner.classList.remove('hidden');
+    button.addEventListener('click', function () {
+      try {
+        localStorage.setItem(key, '1');
+      } catch (e) {}
+      banner.classList.add('hidden');
+    });
+  })();
+</script>

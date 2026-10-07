@@ -56,6 +56,11 @@ const year = new Date().getFullYear();
   </div>
 
   <div class="relative z-10 border-t border-brand-navy/10 py-4 text-center text-xs font-medium text-brand-navy/50">
-    {content.footer.rights.replace('©', `© ${year}`)}
+    <p>{content.footer.rights.replace('©', `© ${year}`)}</p>
+    <p class="mt-2">
+      <a href={localizedPath('/privacy', locale)} class="underline underline-offset-2 transition hover:text-spot-coral">
+        {locale === 'ru' ? 'Политика конфиденциальности' : 'Privacy policy'}
+      </a>
+    </p>
   </div>
 </footer>

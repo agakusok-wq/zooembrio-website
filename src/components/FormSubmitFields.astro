@@ -1,0 +1,19 @@
+---
+import { getFormCcEmail, getFormSubject, type FormKind } from '../data/forms';
+
+interface Props {
+  kind: FormKind;
+  locale?: 'ru' | 'en';
+  source: string;
+}
+
+const { kind, locale = 'ru', source } = Astro.props;
+const cc = getFormCcEmail();
+---
+
+<input type="hidden" name="_subject" value={getFormSubject(kind, locale)} />
+<input type="hidden" name="_captcha" value="false" />
+<input type="hidden" name="_template" value="table" />
+<input type="hidden" name="_cc" value={cc} />
+<input type="hidden" name="source" value={source} />
+<input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />

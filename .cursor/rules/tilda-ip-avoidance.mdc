@@ -1,0 +1,27 @@
+---
+description: Avoid Tilda proprietary code/assets — use original Astro implementation only
+alwaysApply: true
+---
+
+# Tilda IP avoidance (mandatory)
+
+Full registry: `../_shared/TILDA-IP-TRAPS.md` (hub copy).
+
+## Never ship in production / Astro repos
+- Any `tilda-*.js` / `tilda-*.css` or copies of export `js/` `css/`
+- CDN: `tildacdn.com`, `neo.tildacdn`, `ws.tildacdn`, `tilda.cc`, `tilda.ws`
+- DOM: `data-tilda-*`, `formskey`, `.t-records`, `.t-rec`, Zero Block `t396` / `tn-atom`
+- Branding: `tildacopy*.png`, footer "Made on Tilda"
+- Icon pack: `lib__icons__tilda__*`
+- Tilda Stats / cart / forms widgets
+
+## Allowed from Tilda export
+- Customer **text**, **URLs**, **meta**, structure as a checklist
+- Customer-owned images/video after rights check (rename off `tild…` before prod when possible)
+- Visual reference only — **rebuild** in Astro + Tailwind
+
+## Workflow
+1. Read content from `_tilda-references/` 
+2. Implement new components (no paste of Tilda HTML blocks)
+3. Run `npm run scan:ip` before PR/deploy
+4. Stock photos still need human approval (separate from Tilda software IP)

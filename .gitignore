@@ -3,3 +3,9 @@ dist/
 .astro/
 .env
 .DS_Store
+.dev-server.pid
+.dev-server.log
+.dev-server.out.log
+.dev-server.err.log
+.dev-server.install.log
+

@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@500;600;700;800&display=swap');
 
+.form-banner--error {
+  border-color: rgba(232, 72, 42, 0.45) !important;
+  background: rgba(232, 72, 42, 0.1) !important;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

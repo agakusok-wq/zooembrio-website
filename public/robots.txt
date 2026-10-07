@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://zooembrio.ru/sitemap-index.xml
+Sitemap: https://zooembrio.ru/sitemap.xml
+

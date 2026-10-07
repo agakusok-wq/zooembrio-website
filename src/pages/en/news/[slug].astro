@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PageBanner from '../../../components/PageBanner.astro';
+import { formatNewsDate, getNewsBySlug, getNewsSorted, type NewsCta } from '../../../data/news';
+import { localizedPath } from '../../../i18n';
+import { breadcrumbJsonLd } from '../../../data/seo';
+
+export function getStaticPaths() {
+  return getNewsSorted().map((article) => ({ params: { slug: article.slug } }));
+}
+
+const locale = 'en' as const;
+const slug = Astro.params.slug!;
+const article = getNewsBySlug(slug);
+if (!article) {
+  return Astro.redirect('/en/news');
+}
+const loc = article.locales.en;
+const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
+
+const ctaLabels: Record<NewsCta, { label: string; href: string }> = {
+  cattle: { label: 'Cattle page', href: '/cattle' },
+  products: { label: 'Products', href: '/products' },
+  technology: { label: 'Technology', href: '/technology' },
+  about: { label: 'About production', href: '/about' },
+  contact: { label: 'Contact us', href: '/contact' },
+};
+const primary = ctaLabels[article.primaryCta];
+
+const jsonLd = [
+  breadcrumbJsonLd([
+    { name: 'ZOOEMBRIO', path: '/en/' },
+    { name: 'News', path: '/en/news/' },
+    { name: loc.title, path: pageUrl },
+  ]),
+  {
+    '@context': 'https://schema.org',
+    '@type': 'NewsArticle',
+    headline: loc.title,
+    description: loc.metaDescription,
+    datePublished: article.date,
+    dateModified: article.date,
+    mainEntityOfPage: pageUrl,
+    inLanguage: 'en-GB',
+    image: 'https://zooembrio.ru/images/technology/technology-cycle.jpg',
+    author: {
+      '@type': 'Organization',
+      name: 'ZOOEMBRIO',
+      url: 'https://zooembrio.ru/',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'ZOOEMBRIO',
+      url: 'https://zooembrio.ru/',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://zooembrio.ru/images/logo/art-logo.png',
+      },
+    },
+  },
+];
+---
+
+<BaseLayout title={`${loc.title} | ZOOEMBRIO`} description={loc.metaDescription} ogType="article" jsonLd={jsonLd}>
+  <PageBanner title={loc.title} subtitle={formatNewsDate(article.date, locale)} palette="contact" />
+  <article class="py-16">
+    <div class="section-container mx-auto max-w-2xl">
+      <p class="text-base font-medium leading-relaxed text-brand-navy/80">{loc.excerpt}</p>
+      <div class="mt-8 space-y-5 text-sm leading-relaxed text-brand-navy/80">
+        {loc.body.map((p) => <p>{p}</p>)}
+      </div>
+      <div class="mt-10 flex flex-wrap gap-3 border-t border-brand-navy/10 pt-8">
+        <a href={localizedPath(primary.href, locale)} class="btn-primary">
+          {primary.label}
+        </a>
+        <a href={localizedPath('/contact', locale)} class="btn-outline">Contact us</a>
+        <a href={localizedPath('/news', locale)} class="btn-outline">All news</a>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

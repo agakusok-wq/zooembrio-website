@@ -4,13 +4,23 @@ import PageBanner from '../../components/PageBanner.astro';
 import ProductionPage from '../../components/ProductionPage.astro';
 import SpotDots from '../../components/SpotDots.astro';
 import SpotCardBlob from '../../components/SpotCardBlob.astro';
+import FaqSection from '../../components/FaqSection.astro';
 import { getContent } from '../../content/site';
+import { breadcrumbJsonLd, faqJsonLd, getPageSeo } from '../../data/seo';
 
 const content = getContent('en');
+const seo = getPageSeo('about', 'en');
 const futureColors = ['#5b3f8c', '#c23b7a'];
+const jsonLd = [
+  breadcrumbJsonLd([
+    { name: 'ZOOEMBRIO', path: '/en/' },
+    { name: content.production.title, path: '/en/about/' },
+  ]),
+  ...(seo.faqs ? [faqJsonLd(seo.faqs)] : []),
+];
 ---
 
-<BaseLayout>
+<BaseLayout title={seo.title} description={seo.description} jsonLd={jsonLd}>
   <PageBanner title={content.production.title} subtitle={content.production.subtitle} palette="about" />
 
   <ProductionPage content={content} />
@@ -27,10 +37,17 @@ const futureColors = ['#5b3f8c', '#c23b7a'];
               <span class="spot-badge-amber relative z-10">{item.badge}</span>
               <h3 class="relative z-10 mt-4 font-display text-xl font-bold text-brand-navy">{item.title}</h3>
               <p class="relative z-10 mt-2 text-sm text-brand-navy/70">{item.text}</p>
+              {i === 0 ? (
+                <a href="/en/cattle/" class="relative z-10 mt-4 inline-block text-sm font-bold text-spot-coral">
+                  Open cattle section →
+                </a>
+              ) : null}
             </div>
           ))
         }
       </div>
     </div>
   </section>
+
+  {seo.faqs && <FaqSection title="Production FAQ" items={seo.faqs} />}
 </BaseLayout>

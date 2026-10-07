@@ -3,11 +3,17 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageBanner from '../../components/PageBanner.astro';
 import ContactSection from '../../components/ContactSection.astro';
 import { getContent } from '../../content/site';
+import { breadcrumbJsonLd, getPageSeo } from '../../data/seo';
 
 const content = getContent('en');
+const seo = getPageSeo('contact', 'en');
+const jsonLd = breadcrumbJsonLd([
+  { name: 'ZOOEMBRIO', path: '/en/' },
+  { name: content.contact.title, path: '/en/contact/' },
+]);
 ---
 
-<BaseLayout>
+<BaseLayout title={seo.title} description={seo.description} jsonLd={jsonLd}>
   <PageBanner title={content.contact.title} subtitle={content.contact.subtitle} palette="contact" />
   <ContactSection content={content} />
 </BaseLayout>

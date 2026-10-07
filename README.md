@@ -50,9 +50,7 @@ public/images/logo/art-logo.png
 
 ## Форма обратной связи
 
-Используется [FormSubmit](https://formsubmit.co). При первой отправке на `info@zooembrio.ru` придёт письмо-подтверждение — нужно нажать ссылку активации.
-
-Замените email в `src/components/ContactSection.astro`, если используете другой ящик.
+Используется [FormSubmit](https://formsubmit.co): заявки с `/contact/` и `/cart/` уходят на ящик из `PUBLIC_FORM_EMAIL` (см. `.env.example` и **`ФОРМЫ-ЗАЯВОК.txt`**). Настройка в одном месте: `src/data/forms.ts` + переменные окружения при `npm run build`.
 
 ## Деплой в интернет (HTTPS)
 

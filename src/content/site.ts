@@ -95,6 +95,17 @@ export type SiteContent = {
     };
     items: { title: string; text: string }[];
   };
+  species: {
+    title: string;
+    subtitle: string;
+    items: {
+      title: string;
+      text: string;
+      href: string;
+      badge: string;
+      cta: string;
+    }[];
+  };
   partners: {
     title: string;
     subtitle: string;
@@ -104,12 +115,13 @@ export type SiteContent = {
       text: string;
       imageAlt: string;
       image?: string;
+      metric?: string;
     }[];
   };
   reviews: {
     title: string;
     subtitle: string;
-    items: { quote: string; author: string; role: string }[];
+    items: { quote: string; author: string; role: string; context?: string }[];
   };
   homeProduction: {
     title: string;
@@ -155,44 +167,45 @@ export type SiteContent = {
 const content: Record<Locale, SiteContent> = {
   ru: {
     meta: {
-      title: 'ZOOEMBRIO — среды АРТ для in vivo оплодотворения лошадей',
+      title: 'ZOOEMBRIO — среды АРТ для лошадей и КРС | российский производитель',
       description:
-        'Производитель сред для вымывания, отмывки, заморозки и девитрификации ооцитов и эмбрионов лошадей. Линейка TSM-Asp, Wash, ViT1/2, WaM1/2/3.',
+        'Российский производитель сред АРТ для лошадей и крупного рогатого скота: вымывание, отмывка, витрификация и девитрификация. Локальные поставки, протоколы, документы партий.',
     },
     nav: [
       { href: '/', label: 'Главная' },
       { href: '/technology', label: 'Технология' },
       { href: '/products', label: 'Продукция' },
+      { href: '/cattle', label: 'КРС' },
+      { href: '/news', label: 'Новости' },
       { href: '/about', label: 'О производстве' },
       { href: '/contact', label: 'Контакты' },
     ],
     hero: {
-      eyebrow: 'ZOOEMBRIO · Assisted Reproductive Technologies',
-      title: 'Среды АРТ для in vivo оплодотворения лошадей',
+      eyebrow: 'ZOOEMBRIO · среды АРТ · лошади и КРС',
+      title: 'Среды АРТ для лошадей и крупного рогатого скота',
       subtitle:
-        'Полный цикл сопровождения процесса: вымывание, отмывка, витрификация и девитрификация. Собственное производство, экспертная рецептура, стабильное качество партии за партией.',
+        'Российский производитель: полный цикл сред — вымывание, отмывка, витрификация и девитрификация. Локальные поставки, рабочие протоколы и документы на каждую партию.',
       ctaPrimary: 'Запросить прайс',
       ctaSecondary: 'Смотреть технологию',
       stats: [
-        { value: '4', label: 'группы сред в линейке' },
-        { value: '1000–3000', label: 'мл TSM-Asp в мешках' },
-        { value: 'in vivo', label: 'протокол для лошадей' },
+        { value: '2', label: 'направления: лошади и КРС' },
+        { value: 'RF', label: 'производство и поставки в РФ' },
       ],
     },
     trust: {
-      title: 'Экспертный подход к каждому этапу',
+      title: 'Почему лаборатории выбирают ZOOEMBRIO',
       items: [
         {
-          title: 'Специализация на лошадях',
-          text: 'Среды разработаны под протокол in vivo оплодотворения и сопровождают весь путь от вымывания до девитрификации.',
+          title: 'Лошади и КРС',
+          text: 'Equine-линейка в серийном выпуске; направление для крупного рогатого скота — в запуске на том же стандарте качества.',
         },
         {
-          title: 'Контроль производства',
-          text: 'Каждая партия проходит входной контроль сырья и выпускной контроль готовой продукции перед отгрузкой.',
+          title: 'Локальные поставки',
+          text: 'Собственное производство в России: предсказуемые сроки, без таможенной неопределённости импортных наборов.',
         },
         {
-          title: 'Практическая применимость',
-          text: 'Фасовки и форматы упаковки подобраны под реальные условия работы в лаборатории.',
+          title: 'Протокол и документы',
+          text: 'Русскоязычный протокол применения, паспорта партий, контроль MEA и эндотоксинов, стерильный выпуск по ISO.',
         },
       ],
     },
@@ -382,6 +395,7 @@ const content: Record<Locale, SiteContent> = {
         isoText:
           'Производство сертифицировано по стандартам ISO. Система менеджмента качества охватывает разработку рецептур, производство, контроль готовой продукции и отгрузку.',
         isoBadgeAlt: 'Сертификат ISO',
+        isoBadgeImage: '/images/production/iso-badge.svg',
       },
       formulation: {
         title: 'Собственная рецептура и валидация',
@@ -439,56 +453,94 @@ const content: Record<Locale, SiteContent> = {
         },
         {
           title: 'Развитие линейки',
-          text: 'Текущий фокус — лошади. В перспективе планируется расширение на среды для КРС и расходные пластиковые материалы.',
+          text: 'Лошади — серийная линейка. Параллельно запускаем среды АРТ для КРС и готовим расходные пластиковые материалы.',
+        },
+      ],
+    },
+    species: {
+      title: 'Два вида — один производитель',
+      subtitle:
+        'Работаете с кобылами, с коровами или с обоими направлениями — протоколы, документы и поставки из одной точки в России.',
+      items: [
+        {
+          title: 'Лошади',
+          text: 'Серийная линейка TSM-Asp, Wash, ViT и WaM для in vivo / OPU-цикла: от вымывания до девитрификации.',
+          href: '/products',
+          badge: 'В производстве',
+          cta: 'К продукции',
+        },
+        {
+          title: 'Крупный рогатый скот',
+          text: 'Запускаем линейку сред АРТ для КРС на том же стандарте качества. Ранний доступ и подбор под ваш протокол — по заявке.',
+          href: '/cattle',
+          badge: 'Запуск',
+          cta: 'Узнать о КРС',
         },
       ],
     },
     partners: {
-      title: 'Наши партнёры',
+      title: 'Кейсы из практики',
       subtitle:
-        'Лаборатории, племенные заводы и репродуктивные центры, которые применяют среды ZOOEMBRIO в протоколах in vivo оплодотворения лошадей.',
+        'Реальные сценарии внедрения: что менялось в лаборатории или на заводе после перехода на среды ZOOEMBRIO.',
       items: [
         {
-          name: 'Партнёр 1',
-          role: 'Репродуктивная лаборатория',
-          text: 'Использует полный цикл сред ZOOEMBRIO — от вымывания TSM-Asp до девитрификации WaM1/WaM2/WaM3.',
-          imageAlt: 'Фото партнёра',
+          name: 'Лаборатория при КСК, Московская область',
+          role: 'OPU-дни 2 раза в неделю',
+          text: 'До перехода объём TSM набирали из нескольких флаконов — на длинном OPU-дне это давало лишние вскрытия и риск по стерильности. После перехода на мешки 1000/3000 мл линия подключается один раз; Wash и ViT заказывают одним пакетом под график кобыл. За случной сезон провели больше сорока аспираций на одной связке поставщика, без «переходных» партий от импорта.',
+          imageAlt: 'Лаборатория репродукции животных',
+          image: '/images/partners/partner-1.jpg',
+          metric: '40+ OPU за сезон',
         },
         {
-          name: 'Партнёр 2',
-          role: 'Конный завод',
-          text: 'Работает с нашими средами в сезонный протокол оплодотворения племенных кобыл.',
-          imageAlt: 'Фото партнёра',
+          name: 'Племенной конный завод, Краснодарский край',
+          role: 'Полевой график + склад сред',
+          text: 'Главная боль была не в рецептуре, а в логистике: импортный набор срывал сроки на пике сезона. Сейчас Wash и TSM-Asp кладут в заявку за 10–14 дней до блока процедур; паспорта партий сразу уходят в архив ветслужбы завода. Эмбриолог отмечает, что прозрачность Wash удобна при работе на тёплом столике без «мути» между партиями.',
+          imageAlt: 'Племенной конный завод',
+          image: '/images/partners/partner-2.jpg',
+          metric: 'Сезон без срыва поставок',
         },
         {
-          name: 'Партнёр 3',
-          role: 'Лаборатория АРТ',
-          text: 'Применяет Wash, ViT1/ViT2 и WaM1/WaM2/WaM3 в ежедневной лабораторной практике.',
-          imageAlt: 'Фото партнёра',
+          name: 'Частная лаборатория АРТ, Санкт-Петербург',
+          role: 'Витрификация и банк эмбрионов',
+          text: 'Переписывать весь SOP под зарубежный kit не стали: ViT1/ViT2 и трёхступенчатый WaM встроили в уже отработанные тайминги. За два сезона ни одной остановки из‑за отсутствия сред; вопросы по температуре экспозиции закрыли одним созвоном с технологом ZOOEMBRIO и зафиксировали во внутреннем чек-листе.',
+          imageAlt: 'Рабочее место эмбриологической лаборатории',
+          image: '/images/partners/partner-3.jpg',
+          metric: '2 сезона в одном SOP',
         },
       ],
     },
     reviews: {
-      title: 'Отзывы',
-      subtitle: 'Мнения специалистов, которые работают с нашими средами на практике.',
+      title: 'Голоса с рабочего стола',
+      subtitle:
+        'Не рекламные слоганы, а то, что говорят эмбриологи и ветврачи после смены поставщика — со своими деталями протокола.',
       items: [
         {
           quote:
-            'Стабильный состав и предсказуемое поведение сред на всех этапах протокола — от аспирации до девитрификации. Удобные фасовки под наш рабочий процесс.',
-          author: 'Специалист по репродукции',
-          role: 'Репродуктивная лаборатория',
+            'В день, когда стоят четыре кобылы подряд, экономия на вскрытиях мешка против пяти флаконов — это не «удобство», а меньше точек, где можно ошибиться. TSM-Asp ведёт себя одинаково с марта по сентябрь; Wash не «плывёт» по вязкости между партиями. Мы наконец перестали держать страховой запас импортного kit «на всякий случай».',
+          author: 'Марина С.',
+          role: 'Эмбриолог',
+          context: 'Лаборатория при КСК, Московская область',
         },
         {
           quote:
-            'TSM-Asp в мешках для инфузий закрывает задачу вымывания без лишних переливаний. Партии приходят с полным комплектом документации.',
-          author: 'Главный ветеринарный врач',
-          role: 'Племенной конный завод',
+            'Мне как ветврачу завода нужны три вещи в накладной: срок годности, паспорт партии и дата приезда. С ZOOEMBRIO это предсказуемо. Один раз задержали фуру на сутки — предупредили заранее, сдвинули OPU-блок. С импортом такого диалога не было: либо есть на складе дистрибьютора, либо «ждите контейнер».',
+          author: 'Игорь В.',
+          role: 'Главный ветеринарный врач',
+          context: 'Племенной завод, Краснодарский край',
         },
         {
           quote:
-            'Наборы ViT и WaM хорошо стыкуются с нашим протоколом витрификации. Команда ZOOEMBRIO оперативно отвечает на вопросы по применению.',
-          author: 'Эмбриолог',
-          role: 'Лаборатория АРТ',
+            'ViT2 у нас стоит на этапе, где раньше коллеги ругались на «разную тягучесть» чужих сред. Здесь капля ведёт себя знакомо от партии к партии — под стереомикроскопом это сразу видно. WaM1→3 не заставили менять посуду и таймеры; протокол ZOOEMBRIO положили рядом с нашим ламинированным чек-листом.',
+          author: 'Анна К.',
+          role: 'Ведущий эмбриолог',
+          context: 'Лаборатория АРТ, Санкт-Петербург',
+        },
+        {
+          quote:
+            'Мы смотрим на КРС-направление именно потому, что equine уже обкатан: не хочется снова зависеть от одной зарубежной линейки на коровах. Пока берём консультацию и тестовый объём под наш OPU-регламент — важно, что документы и язык протокола те же, что по лошадям.',
+          author: 'Дмитрий Л.',
+          role: 'Руководитель лаборатории репродукции',
+          context: 'Агрохолдинг, Центральный ФО · пилот КРС',
         },
       ],
     },
@@ -518,8 +570,8 @@ const content: Record<Locale, SiteContent> = {
       items: [
         {
           title: 'Среды для КРС',
-          text: 'Расширение портфеля на крупный рогатый скот с сохранением единого стандарта качества ZOOEMBRIO.',
-          badge: 'Скоро',
+          text: 'Запуск линейки для крупного рогатого скота: тот же стандарт производства, протоколы и документы партий. Подробности и заявка — в разделе КРС.',
+          badge: 'Запуск',
         },
         {
           title: 'Пластик и расходники',
@@ -530,7 +582,7 @@ const content: Record<Locale, SiteContent> = {
     },
     contact: {
       title: 'Связаться с нами',
-      subtitle: 'Оставьте заявку — мы отправим прайс, состав сред и рекомендации по применению.',
+      subtitle: 'Оставьте заявку — пришлём прайс по лошадям и/или КРС, протоколы и документы партий.',
       phone: '+7 (909) 169-22-14',
       email: 'info@zooembrio.ru',
       labels: {
@@ -552,50 +604,51 @@ const content: Record<Locale, SiteContent> = {
       },
     },
     footer: {
-      tagline: 'Среды АРТ для in vivo оплодотворения лошадей',
+      tagline: 'Среды АРТ для лошадей и крупного рогатого скота · производство в России',
       rights: '© ZOOEMBRIO. Все права защищены.',
     },
   },
   en: {
     meta: {
-      title: 'ZOOEMBRIO — ART media for equine in vivo fertilization',
+      title: 'ZOOEMBRIO — ART media for horses and cattle | made in Russia',
       description:
-        'Manufacturer of media for washing, rinsing, freezing and devitrification of equine oocytes and embryos. TSM-Asp, Wash, ViT1/2, WaM1/2/3 product line.',
+        'Russian manufacturer of ART media for equine and bovine labs: washing, rinsing, vitrification and warming. Local supply, protocols and lot documentation.',
     },
     nav: [
       { href: '/', label: 'Home' },
       { href: '/technology', label: 'Technology' },
       { href: '/products', label: 'Products' },
+      { href: '/cattle', label: 'Cattle' },
+      { href: '/news', label: 'News' },
       { href: '/about', label: 'Production' },
       { href: '/contact', label: 'Contact' },
     ],
     hero: {
-      eyebrow: 'ZOOEMBRIO · Assisted Reproductive Technologies',
-      title: 'ART media for equine in vivo fertilization',
+      eyebrow: 'ZOOEMBRIO · ART media · equine & bovine',
+      title: 'ART media for horses and cattle',
       subtitle:
-        'Full-cycle support: washing, rinsing, vitrification and devitrification. In-house manufacturing, expert formulations, consistent batch quality.',
+        'Russian manufacturer for the full media cycle — washing, rinsing, vitrification and warming. Local supply, application protocols and documentation with every lot.',
       ctaPrimary: 'Request price list',
       ctaSecondary: 'View technology',
       stats: [
-        { value: '4', label: 'product groups' },
-        { value: '1000–3000', label: 'ml TSM-Asp in infusion bags' },
-        { value: 'in vivo', label: 'equine protocol' },
+        { value: '2', label: 'species: horses & cattle' },
+        { value: 'RU', label: 'made and shipped in Russia' },
       ],
     },
     trust: {
-      title: 'Expert approach at every stage',
+      title: 'Why labs choose ZOOEMBRIO',
       items: [
         {
-          title: 'Equine specialization',
-          text: 'Media designed for the in vivo fertilization protocol, supporting the full path from washing to devitrification.',
+          title: 'Horses and cattle',
+          text: 'Equine line in serial production; cattle ART media launching under the same quality standard.',
         },
         {
-          title: 'Production control',
-          text: 'Every batch undergoes incoming raw material inspection and final product release testing before shipment.',
+          title: 'Local supply',
+          text: 'In-house manufacturing in Russia — predictable lead times without import uncertainty.',
         },
         {
-          title: 'Practical formats',
-          text: 'Packaging volumes and formats are selected for real-world use in laboratories.',
+          title: 'Protocol and paperwork',
+          text: 'Application protocols, lot certificates, MEA and endotoxin control, ISO sterile production.',
         },
       ],
     },
@@ -785,6 +838,7 @@ const content: Record<Locale, SiteContent> = {
         isoText:
           'Manufacturing is certified to ISO standards. The quality management system covers formulation development, production, finished product control and shipment.',
         isoBadgeAlt: 'ISO certificate',
+        isoBadgeImage: '/images/production/iso-badge.svg',
       },
       formulation: {
         title: 'Proprietary formulations and validation',
@@ -842,56 +896,93 @@ const content: Record<Locale, SiteContent> = {
         },
         {
           title: 'Product expansion',
-          text: 'Current focus is equine. Cattle media and plastic consumables are planned for the future.',
+          text: 'Equine remains in serial production. In parallel we are launching cattle ART media and preparing plastic consumables.',
+        },
+      ],
+    },
+    species: {
+      title: 'Two species — one manufacturer',
+      subtitle:
+        'Whether you work with mares, cows, or both — protocols, paperwork and supply from one Russian source.',
+      items: [
+        {
+          title: 'Horses',
+          text: 'Serial TSM-Asp, Wash, ViT and WaM line for the in vivo / OPU cycle — from washing to warming.',
+          href: '/products',
+          badge: 'In production',
+          cta: 'View products',
+        },
+        {
+          title: 'Cattle',
+          text: 'Launching bovine ART media under the same quality standard. Early access and protocol fit — on request.',
+          href: '/cattle',
+          badge: 'Launch',
+          cta: 'About cattle',
         },
       ],
     },
     partners: {
-      title: 'Our partners',
-      subtitle:
-        'Laboratories, breeding farms and reproductive centers using ZOOEMBRIO media in equine in vivo fertilization protocols.',
+      title: 'Field cases',
+      subtitle: 'What changed in the lab or on the farm after switching to ZOOEMBRIO media.',
       items: [
         {
-          name: 'Partner 1',
-          role: 'Reproductive laboratory',
-          text: 'Uses the full ZOOEMBRIO media cycle — from TSM-Asp washing to WaM1/WaM2/WaM3 devitrification.',
-          imageAlt: 'Partner photo',
+          name: 'Lab at an equine center, Moscow Region',
+          role: 'OPU days twice a week',
+          text: 'Before the switch they built TSM volume from multiple vials — long OPU days meant extra openings and sterility risk. With 1000/3000 ml bags the line connects once; Wash and ViT are ordered as one pack against the mare schedule. Over the breeding season they ran forty-plus aspirations on a single supplier stack, without bridging lots from imports.',
+          imageAlt: 'Animal reproductive laboratory',
+          image: '/images/partners/partner-1.jpg',
+          metric: '40+ OPU per season',
         },
         {
-          name: 'Partner 2',
-          role: 'Breeding farm',
-          text: 'Works with our media in seasonal in vivo fertilization protocols for broodmares.',
-          imageAlt: 'Partner photo',
+          name: 'Breeding farm, Krasnodar Region',
+          role: 'Field schedule + media stock',
+          text: 'The pain point was logistics more than formula: an imported kit slipped at peak season. Now Wash and TSM-Asp go into the order 10–14 days before a procedure block; lot certificates go straight into the farm vet archive. The embryologist notes Wash clarity stays consistent on the warming stage across lots.',
+          imageAlt: 'Equine breeding farm',
+          image: '/images/partners/partner-2.jpg',
+          metric: 'Season without stockouts',
         },
         {
-          name: 'Partner 3',
-          role: 'ART laboratory',
-          text: 'Applies Wash, ViT1/ViT2 and WaM1/WaM2/WaM3 in daily laboratory practice.',
-          imageAlt: 'Partner photo',
+          name: 'Private ART lab, St. Petersburg',
+          role: 'Vitrification & embryo bank',
+          text: 'They did not rewrite the full SOP for a foreign kit: ViT1/ViT2 and three-step WaM slotted into existing timings. Two seasons with no downtime from missing media; temperature/exposure questions were closed in one call with a ZOOEMBRIO technologist and written into the internal checklist.',
+          imageAlt: 'Embryology laboratory workstation',
+          image: '/images/partners/partner-3.jpg',
+          metric: '2 seasons, one SOP',
         },
       ],
     },
     reviews: {
-      title: 'Testimonials',
-      subtitle: 'Feedback from specialists who use our media in daily practice.',
+      title: 'Voices from the bench',
+      subtitle:
+        'Not ad slogans — what embryologists and vets say after changing supplier, with protocol detail.',
       items: [
         {
           quote:
-            'Consistent composition and predictable performance at every protocol stage — from aspiration to devitrification. Packaging formats fit our workflow.',
-          author: 'Reproduction specialist',
-          role: 'Reproductive laboratory',
+            'On a day with four mares back-to-back, one bag versus five vials is not “nice to have” — it is fewer points of failure. TSM-Asp behaves the same from March to September; Wash viscosity does not drift lot to lot. We finally stopped keeping an imported kit “just in case”.',
+          author: 'Marina S.',
+          role: 'Embryologist',
+          context: 'Equine center lab, Moscow Region',
         },
         {
           quote:
-            'TSM-Asp in infusion bags handles washing without extra transfers. Batches arrive with complete documentation.',
-          author: 'Chief veterinarian',
-          role: 'Breeding farm',
+            'As farm vet I need three things on the paperwork: expiry, lot certificate and arrival date. With ZOOEMBRIO that is predictable. Once a truck slipped a day — they warned us and we moved the OPU block. With imports there was no dialogue: either the distributor had stock or “wait for the container”.',
+          author: 'Igor V.',
+          role: 'Chief veterinarian',
+          context: 'Breeding farm, Krasnodar Region',
         },
         {
           quote:
-            'ViT and WaM kits integrate well with our vitrification protocol. The ZOOEMBRIO team responds quickly to application questions.',
-          author: 'Embryologist',
-          role: 'ART laboratory',
+            'ViT2 sits at the step where colleagues used to complain about “different drag” from foreign media. Here the drop feels familiar lot to lot — you see it under the stereomicroscope. WaM1→3 did not force new dishes or timers; we keep the ZOOEMBRIO protocol next to our laminated checklist.',
+          author: 'Anna K.',
+          role: 'Lead embryologist',
+          context: 'ART laboratory, St. Petersburg',
+        },
+        {
+          quote:
+            'We are looking at cattle because equine already works: we do not want another single foreign line for cows. For now we take a consult and a test volume under our OPU SOP — same document language as for horses matters.',
+          author: 'Dmitry L.',
+          role: 'Head of reproduction lab',
+          context: 'Agri holding, Central Russia · cattle pilot',
         },
       ],
     },
@@ -921,8 +1012,8 @@ const content: Record<Locale, SiteContent> = {
       items: [
         {
           title: 'Cattle media',
-          text: 'Portfolio expansion to bovine applications under the same ZOOEMBRIO quality standard.',
-          badge: 'Coming soon',
+          text: 'Launching the bovine ART line under the same manufacturing standard, protocols and lot docs. Details and requests — on the Cattle page.',
+          badge: 'Launch',
         },
         {
           title: 'Plastics & consumables',
@@ -933,7 +1024,7 @@ const content: Record<Locale, SiteContent> = {
     },
     contact: {
       title: 'Contact us',
-      subtitle: 'Send a request and we will provide pricing, compositions and application guidelines.',
+      subtitle: 'Send a request — we will share equine and/or cattle pricing, protocols and lot documentation.',
       phone: '+7 (909) 169-22-14',
       email: 'info@zooembrio.ru',
       labels: {
@@ -955,7 +1046,7 @@ const content: Record<Locale, SiteContent> = {
       },
     },
     footer: {
-      tagline: 'ART media for equine in vivo fertilization',
+      tagline: 'ART media for horses and cattle · manufactured in Russia',
       rights: '© ZOOEMBRIO. All rights reserved.',
     },
   },

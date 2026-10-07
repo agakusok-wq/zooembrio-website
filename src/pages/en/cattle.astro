@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageBanner from '../../components/PageBanner.astro';
+import SpotDots from '../../components/SpotDots.astro';
+import SpotCardBlob from '../../components/SpotCardBlob.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import { localizedPath } from '../../i18n';
+import { breadcrumbJsonLd, faqJsonLd, getPageSeo } from '../../data/seo';
+
+const locale = 'en' as const;
+const seo = getPageSeo('cattle', locale);
+
+const pillars = [
+  {
+    title: 'Same QC standard',
+    text: 'Sterile manufacturing, lot release, MEA and endotoxins — one ZOOEMBRIO approach for horses and cattle.',
+    color: '#2ab0b3',
+  },
+  {
+    title: 'Stage logic',
+    text: 'Media for oocyte and embryo work: handling/washing, rinsing, vitrification and warming — fitted to your lab SOP.',
+    color: '#e8482a',
+  },
+  {
+    title: 'Supply in Russia',
+    text: 'No waiting on an import container: volume alignment, lot certificate and predictable ship date.',
+    color: '#7ec8e3',
+  },
+];
+
+const jsonLd = [
+  breadcrumbJsonLd([
+    { name: 'ZOOEMBRIO', path: '/en/' },
+    { name: 'ART media for cattle', path: '/en/cattle/' },
+  ]),
+  ...(seo.faqs ? [faqJsonLd(seo.faqs)] : []),
+];
+---
+
+<BaseLayout title={seo.title} description={seo.description} jsonLd={jsonLd}>
+  <PageBanner
+    title="ART media for cattle"
+    subtitle="Launching a bovine line under the same standard as equine: local manufacturing, protocols and lot documentation."
+    palette="products"
+  />
+
+  <section class="py-16">
+    <div class="section-container">
+      <SpotDots class="mb-4" />
+      <p class="max-w-3xl text-base leading-relaxed text-brand-navy/80">
+        ZOOEMBRIO is a Russian ART media manufacturer. The equine line (TSM-Asp, Wash, ViT, WaM) is already in serial
+        production. We are opening the cattle direction for labs that need a local alternative to imported kits — with a
+        clear protocol and paperwork.
+      </p>
+
+      <div class="mt-12 grid gap-6 md:grid-cols-3">
+        {
+          pillars.map((item) => (
+            <div class="spot-card">
+              <SpotCardBlob color={item.color} />
+              <h2 class="relative z-10 font-display text-lg font-bold text-brand-navy">{item.title}</h2>
+              <p class="relative z-10 mt-2 text-sm leading-relaxed text-brand-navy/75">{item.text}</p>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="mt-14 rounded-3xl border-2 border-brand-navy/10 bg-brand-cream/60 p-8 md:p-10">
+        <h2 class="font-display text-2xl font-extrabold text-brand-navy">Early access to the cattle line</h2>
+        <p class="mt-3 max-w-2xl text-sm leading-relaxed text-brand-navy/75">
+          Send a request — we will clarify your protocol (OPU / IVF / vitrification), propose a starter set and share
+          documentation. Equine remains a full active line in parallel.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href={localizedPath('/contact', locale)} class="btn-primary">Request cattle offer</a>
+          <a href={localizedPath('/news/cattle-art-media-launch', locale)} class="btn-outline">Read the launch news</a>
+          <a href={localizedPath('/products', locale)} class="btn-outline">Equine products</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {seo.faqs && <FaqSection title="Cattle media FAQ" items={seo.faqs} />}
+</BaseLayout>

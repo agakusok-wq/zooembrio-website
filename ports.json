@@ -1,0 +1,41 @@
+{
+    "sites":  [
+                  {
+                      "port":  4321,
+                      "folder":  "zooembrio-website",
+                      "name":  "ZOOEMBRIO",
+                      "id":  "zooembrio",
+                      "url":  "http://127.0.0.1:4321/"
+                  },
+                  {
+                      "port":  4322,
+                      "folder":  "wtarus-website",
+                      "name":  "WTARUS",
+                      "id":  "wtarus",
+                      "url":  "http://127.0.0.1:4322/"
+                  },
+                  {
+                      "port":  4323,
+                      "folder":  "opulab-website",
+                      "name":  "Opulab",
+                      "id":  "opulab",
+                      "url":  "http://127.0.0.1:4323/"
+                  },
+                  {
+                      "port":  4324,
+                      "folder":  "sredy-zhizni-website",
+                      "name":  "Среды жизни",
+                      "id":  "sredy-zhizni",
+                      "url":  "http://127.0.0.1:4324/"
+                  },
+                  {
+                      "port":  4325,
+                      "folder":  "kpt-research-site",
+                      "name":  "Космопродтест",
+                      "id":  "kpt",
+                      "url":  "http://127.0.0.1:4325/"
+                  }
+              ],
+    "note":  "STRICT: each site must use only its port. Never use 4321 for non-zooembrio sites.",
+    "updated":  "2026-10-03T00:51:23"
+}

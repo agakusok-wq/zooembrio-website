@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageBanner from '../../components/PageBanner.astro';
+import { formatNewsDate, getNewsBySlug, getNewsSorted, type NewsCta } from '../../data/news';
+import { getLocaleFromUrl, localizedPath } from '../../i18n';
+import { breadcrumbJsonLd } from '../../data/seo';
+
+export function getStaticPaths() {
+  return getNewsSorted().map((article) => ({ params: { slug: article.slug } }));
+}
+
+const locale = getLocaleFromUrl(Astro.url);
+const slug = Astro.params.slug!;
+const article = getNewsBySlug(slug);
+if (!article) {
+  return Astro.redirect(localizedPath('/news', locale));
+}
+const loc = article.locales[locale];
+const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
+const newsIndexPath = locale === 'ru' ? '/news/' : '/en/news/';
+const homePath = locale === 'ru' ? '/' : '/en/';
+
+const ctaLabels: Record<NewsCta, { ru: string; en: string; href: string }> = {
+  cattle: { ru: 'Раздел КРС', en: 'Cattle page', href: '/cattle' },
+  products: { ru: 'Каталог продуктов', en: 'Products', href: '/products' },
+  technology: { ru: 'Технология', en: 'Technology', href: '/technology' },
+  about: { ru: 'О производстве', en: 'About production', href: '/about' },
+  contact: { ru: 'Оставить заявку', en: 'Contact us', href: '/contact' },
+};
+const primary = ctaLabels[article.primaryCta];
+
+const jsonLd = [
+  breadcrumbJsonLd([
+    { name: 'ZOOEMBRIO', path: homePath },
+    { name: locale === 'ru' ? 'Новости' : 'News', path: newsIndexPath },
+    { name: loc.title, path: pageUrl },
+  ]),
+  {
+    '@context': 'https://schema.org',
+    '@type': 'NewsArticle',
+    headline: loc.title,
+    description: loc.metaDescription,
+    datePublished: article.date,
+    dateModified: article.date,
+    mainEntityOfPage: pageUrl,
+    inLanguage: locale === 'ru' ? 'ru-RU' : 'en-GB',
+    image: 'https://zooembrio.ru/images/technology/technology-cycle.jpg',
+    author: {
+      '@type': 'Organization',
+      name: 'ZOOEMBRIO',
+      url: 'https://zooembrio.ru/',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'ZOOEMBRIO',
+      url: 'https://zooembrio.ru/',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://zooembrio.ru/images/logo/art-logo.png',
+      },
+    },
+  },
+];
+---
+
+<BaseLayout title={`${loc.title} | ZOOEMBRIO`} description={loc.metaDescription} ogType="article" jsonLd={jsonLd}>
+  <PageBanner title={loc.title} subtitle={formatNewsDate(article.date, locale)} palette="contact" />
+  <article class="py-16">
+    <div class="section-container mx-auto max-w-2xl">
+      <p class="text-base font-medium leading-relaxed text-brand-navy/80">{loc.excerpt}</p>
+      <div class="mt-8 space-y-5 text-sm leading-relaxed text-brand-navy/80">
+        {loc.body.map((p) => <p>{p}</p>)}
+      </div>
+      <div class="mt-10 flex flex-wrap gap-3 border-t border-brand-navy/10 pt-8">
+        <a href={localizedPath(primary.href, locale)} class="btn-primary">
+          {locale === 'ru' ? primary.ru : primary.en}
+        </a>
+        <a href={localizedPath('/contact', locale)} class="btn-outline">
+          {locale === 'ru' ? 'Оставить заявку' : 'Contact us'}
+        </a>
+        <a href={localizedPath('/news', locale)} class="btn-outline">
+          {locale === 'ru' ? 'Все новости' : 'All news'}
+        </a>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

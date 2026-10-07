@@ -9,7 +9,7 @@ interface Props {
 const { content } = Astro.props;
 ---
 
-<section class="py-20">
+<section class="border-t border-brand-navy/5 bg-brand-cream/40 py-20">
   <div class="section-container">
     <SpotDots class="mb-4 justify-center" />
     <div class="mx-auto max-w-2xl text-center">
@@ -17,7 +17,7 @@ const { content } = Astro.props;
       <p class="mt-4 text-brand-navy/70">{content.reviews.subtitle}</p>
     </div>
 
-    <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <div class="mt-12 grid gap-6 md:grid-cols-2">
       {
         content.reviews.items.map((review) => (
           <blockquote class="review-card">
@@ -25,6 +25,7 @@ const { content } = Astro.props;
             <footer class="review-card__footer">
               <cite class="review-card__author">{review.author}</cite>
               <span class="review-card__role">{review.role}</span>
+              {review.context ? <span class="mt-1 block text-xs text-brand-navy/55">{review.context}</span> : null}
             </footer>
           </blockquote>
         ))

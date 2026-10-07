@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageBanner from '../../components/PageBanner.astro';
+---
+
+<BaseLayout>
+  <PageBanner
+    title="Privacy Policy"
+    subtitle="Personal data processing on zooembrio.ru"
+    palette="contact"
+  />
+  <article class="section-container max-w-3xl space-y-4 py-12 leading-relaxed text-brand-navy/90">
+    <p>
+      The full personal data processing policy is published in Russian and applies to all visitors of
+      <a class="font-semibold text-spot-coral underline" href="https://zooembrio.ru/">https://zooembrio.ru/</a>.
+    </p>
+    <p>
+      Operator contact for privacy requests:
+      <a class="font-semibold text-spot-coral underline" href="mailto:info@zooembrio.ru">info@zooembrio.ru</a>.
+    </p>
+    <p>
+      <a class="btn-outline inline-flex" href="/privacy/">Open full policy (RU)</a>
+    </p>
+  </article>
+</BaseLayout>
